@@ -4,15 +4,17 @@ import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.view.Menu;
+//import android.support.v4.*;
+import android.support.v7.app.ActionBarActivity;
 
-public class MainActivity extends Activity {
+public class MainActivity extends android.support.v7.app.ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-//		final ActionBar actionBar = getActionBar();
-//		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		final android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 	}
 
 	@Override
