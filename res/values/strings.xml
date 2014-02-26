@@ -2,7 +2,9 @@
 <resources>
 
     <string name="app_name">Zero1</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">设置</string>
     <string name="hello_world">Hello world!</string>
-  	<string name="query">Hello world!</string>
+  	<string name="query">查询</string>
+  	<string name="action_add">添加</string>
+  	<string name="inf_user">帐户信息</string>
 </resources>

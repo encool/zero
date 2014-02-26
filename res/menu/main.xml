@@ -3,12 +3,24 @@
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:showAsAction="ifRoom|withText"
+        android:showAsAction="never"
         android:title="@string/action_settings"/>
     <item 
-        android:id="@+id/query"
+        android:id="@+id/action_query"
 		android:icon="@drawable/query"
         android:title="@string/query" 
 		android:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/action_add"
+        android:icon="@drawable/ic_add"
+        android:title="@string/action_add"
+        android:showAsAction="ifRoom|withText"
+        />
+    <item
+		android:id="@+id/inf_user"
+		android:icon="@drawable/ic_user"
+		android:title="@string/inf_user"
+		android:showAsAction="never"
+     	/>
 
 </menu>
