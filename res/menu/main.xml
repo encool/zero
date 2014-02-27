@@ -1,26 +1,27 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android" 
+    xmlns:holo="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        holo:showAsAction="never"
         android:title="@string/action_settings"/>
     <item 
         android:id="@+id/action_query"
 		android:icon="@drawable/query"
         android:title="@string/query" 
-		android:showAsAction="ifRoom|withText" />
+		holo:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/action_add"
         android:icon="@drawable/ic_add"
         android:title="@string/action_add"
-        android:showAsAction="ifRoom|withText"
+        holo:showAsAction="always|withText"
         />
     <item
 		android:id="@+id/inf_user"
 		android:icon="@drawable/ic_user"
 		android:title="@string/inf_user"
-		android:showAsAction="never"
+		holo:showAsAction="never"
      	/>
 
 </menu>
