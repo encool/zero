@@ -13,11 +13,11 @@ public class SerchFragment extends Fragment {
 	}
 
 //	@Override
-//	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//			Bundle savedInstanceState) {
-//		// TODO Auto-generated method stub
-//		View rootview=new 
-//		return super.onCreateView(inflater, container, savedInstanceState);
-//	}
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		View rootview=inflater.inflate(R.layout.fragment_serch_main, container,false);
+		return rootview;
+	}
 
 }
