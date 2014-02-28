@@ -31,9 +31,6 @@
             android:textSize="24dp" 
             android:onClick="onRadioButtonClicked"/>
 
-            android:text="网站入口"
-            android:textAlignment="gravity"
-            android:textSize="24dp" />
 
 
         <RadioButton
@@ -50,9 +47,6 @@
             android:textAlignment="center"
             android:textSize="24dp"
 			android:onClick="onRadioButtonClicked"/>
-
-            android:textAlignment="center"
-            android:textSize="24dp" />
 
 
     </RadioGroup>

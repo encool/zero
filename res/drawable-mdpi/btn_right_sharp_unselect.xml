@@ -9,8 +9,6 @@
         android:startColor="@color/radiobtn_startbgcolor_unselected"
         android:endColor="@color/radiobtn_endbgcolor_unselected"/>
 
-        android:startColor="#000"
-        android:endColor="#fff"/>
 
     <padding android:right="12dp"
         android:top="4dp"
