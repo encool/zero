@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="radio_btn_selected_color">#fff</color>
+    <color name="radio_btn_unselected_color">#000</color>
+    <color name="radiobtn_startbgcolor_selected">#555</color>
+    <color name="radiobtn_startbgcolor_unselected">#fff</color>
+    <color name="radiobtn_endbgcolor_selected">#000</color>
+    <color name="radiobtn_endbgcolor_unselected">#ddd</color>
+</resources>

@@ -8,6 +8,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 //import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
+import android.view.View;
+import android.widget.RadioButton;
 
 public class AppActivity extends android.support.v7.app.ActionBarActivity {
 	FragmentPagerAdapter ticketPageAdapter;
@@ -30,5 +32,21 @@ public class AppActivity extends android.support.v7.app.ActionBarActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	public void onRadioButtonClicked(View view) {
+	    // Is the button now checked?
+	    boolean checked = ((RadioButton) view).isChecked();
+	    
+	    // Check which radio button was clicked
+	    switch(view.getId()) {
+	        case R.id.radio_left_btn:
+	            if (checked)
+	            	
+	            break;
+	        case R.id.radio_right_btn:
+	            if (checked)
+	                // Ninjas rule
+	            break;
+	    }
 	}
 }
