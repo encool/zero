@@ -41,7 +41,7 @@ public class AppActivity extends android.support.v7.app.ActionBarActivity {
 	    switch(view.getId()) {
 	        case R.id.radio_left_btn:
 	            if (checked)
-	            	
+	            	 
 	            break;
 	        case R.id.radio_right_btn:
 	            if (checked)

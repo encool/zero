@@ -24,11 +24,17 @@
             android:button="@null"
             android:checked="true"
             android:gravity="center_horizontal"
+
             android:text="PC入口"
             android:textColor="@color/radio_btn_color"
             android:textAlignment="gravity"
             android:textSize="24dp" 
             android:onClick="onRadioButtonClicked"/>
+
+            android:text="网站入口"
+            android:textAlignment="gravity"
+            android:textSize="24dp" />
+
 
         <RadioButton
             android:id="@+id/radio_right_btn"
@@ -39,10 +45,15 @@
             android:button="@null"
             android:gravity="center_horizontal"
             android:text="手机入口"
+
             android:textColor="@color/radio_btn_color"
             android:textAlignment="center"
             android:textSize="24dp"
 			android:onClick="onRadioButtonClicked"/>
+
+            android:textAlignment="center"
+            android:textSize="24dp" />
+
 
     </RadioGroup>
 
