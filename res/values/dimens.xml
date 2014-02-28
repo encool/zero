@@ -6,5 +6,7 @@
     <dimen name="serch_horizontal_margin">6dp</dimen>
     <dimen name="serch_vertical_margin">6dp</dimen>
     <dimen name="serch_main_margin">10dp</dimen>
-
+	<dimen name="midtable_top_margin">10dp</dimen>
+	<dimen name="midtable_left_margin">10dp</dimen>
+	<dimen name="midtable_right_margin">10dp</dimen>
 </resources>
