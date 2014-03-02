@@ -17,6 +17,8 @@ public class SerchFragment extends Fragment {
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View rootview=inflater.inflate(R.layout.fragment_serch_main, container,false);
+
+		
 		return rootview;
 	}
 

@@ -25,10 +25,10 @@
             android:checked="true"
             android:gravity="center_horizontal"
             android:onClick="onRadioButtonClicked"
-            android:text="模拟手机"
+            android:text="手机引擎"
             android:textAlignment="gravity"
             android:textColor="@color/radio_btn_color"
-            android:textSize="20dp" />
+            android:textSize="18sp" />
 
         <RadioButton
             android:id="@+id/radio_right_btn"
@@ -39,10 +39,10 @@
             android:button="@null"
             android:gravity="center_horizontal"
             android:onClick="onRadioButtonClicked"
-            android:text="模拟网页"
+            android:text="网页引擎"
             android:textAlignment="center"
             android:textColor="@color/radio_btn_color"
-            android:textSize="20dp" />
+            android:textSize="18sp" />
     </RadioGroup>
 
     <TableLayout
@@ -51,6 +51,8 @@
         android:layout_alignLeft="@+id/radioGroup1"
         android:layout_alignRight="@+id/radioGroup1"
         android:layout_below="@+id/radioGroup1"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/table_conersharp_bg"
         android:paddingLeft="@dimen/midtable_left_margin"
         android:paddingRight="@dimen/midtable_right_margin"
         android:paddingTop="@dimen/midtable_top_margin" >
@@ -58,35 +60,86 @@
         <TableRow
             android:id="@+id/tableRow1"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/TextView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tablerow_cornersharp"
+            android:padding="@dimen/table_row1_margin" >
+            
+			<LinearLayout 
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:gravity="center_horizontal"
+                android:layout_weight="3"
                 android:clickable="true"
-                android:text="TextView" />
+                android:background="@drawable/station_text_bg"
+			    android:orientation="vertical"			 
+			    >
+			
+			    <TextView
+			        android:id="@+id/textView1"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:paddingBottom="@dimen/text_half_gap"
+			        android:textColor="@color/font_color_light"
+			        android:text="始发站" />
+			
+			    <TextView
+			        android:id="@+id/textView2"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:paddingTop="@dimen/text_half_gap"
+			        android:text="一个车站"
+			        android:textSize="@dimen/text_station_size" />
+			
+			</LinearLayout>
 
-            <Button
+            <ImageButton
                 android:id="@+id/button1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="12dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical|center_horizontal"
                 android:layout_weight="1"
-                android:text="btn" />
+                android:background="@drawable/exchange_btn"
+              />
 
-            <TextView
-                android:id="@+id/TextView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:text="TextView" />
+			<LinearLayout
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_weight="3"
+			    android:background="@drawable/station_text_bg"
+			    android:clickable="true"
+			    android:gravity="center_horizontal"
+			    android:orientation="vertical" >
+			
+			    <TextView
+			        android:id="@+id/textView1"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:paddingBottom="@dimen/text_half_gap"
+			        android:textColor="@color/font_color_light"
+			        android:text="终点站" />
+			
+			    <TextView
+			        android:id="@+id/textView2"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:paddingTop="@dimen/text_half_gap"
+			        android:text="一个车站"
+			        android:textSize="@dimen/text_station_size" />
+			
+			</LinearLayout>
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
         </TableRow>
 
         <TableRow
