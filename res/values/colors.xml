@@ -7,4 +7,6 @@
     <color name="radiobtn_endbgcolor_selected">#000</color>
     <color name="radiobtn_endbgcolor_unselected">#ddd</color>
     <color name="font_color_light">#aaa</color>
+    <color name="something_pressed">#ddd</color>
+    <color name="white">#fff</color>
 </resources>
