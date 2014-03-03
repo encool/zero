@@ -159,7 +159,6 @@
                 android:id="@+id/week"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:drawableRight="@drawable/arrow_right"
                 android:gravity="right|center_vertical"
                 android:text="周二" />
@@ -168,14 +167,52 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_bet_row"
+            android:background="@drawable/row_bg_selector"
+            android:paddingBottom="@dimen/text_gap"
+            android:paddingTop="@dimen/text_gap" >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/TextView02"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_weight="10"
+                android:gravity="left|center_vertical"
+                android:text="时段" />
 
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Time_something" />
+        </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_bet_row"
+                    android:background="@drawable/row_bg_selector"
+                    android:paddingBottom="@dimen/text_gap"
+                    android:paddingTop="@dimen/text_gap" >
+
+            <TextView
+                android:id="@+id/TextView08"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:gravity="left|center_vertical"
+                android:text="车型" />
+
+            <TextView
+                android:id="@+id/type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="type_something" />
         </LinearLayout>
 
     </LinearLayout>
