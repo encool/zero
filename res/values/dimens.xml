@@ -10,9 +10,10 @@
 	<dimen name="midtable_left_margin">1dp</dimen>
 	<dimen name="midtable_right_margin">1dp</dimen>
 	<dimen name="midtable_conner_radius">8dp</dimen>
-	<dimen name="text_half_gap">4dp</dimen>
-	<dimen name="text_gap">8dp</dimen>
+	<dimen name="text_half_gap">5dp</dimen>
+	<dimen name="text_gap">10dp</dimen>
 	<dimen name="text_station_size">18sp</dimen>
 	<dimen name="table_row1_margin">6dp</dimen>
 	<dimen name="margin_bet_row">1dp</dimen>
+	<dimen name="common_gap">8dp</dimen>
 </resources>

@@ -6,6 +6,10 @@
     <color name="radiobtn_startbgcolor_unselected">#fff</color>
     <color name="radiobtn_endbgcolor_selected">#000</color>
     <color name="radiobtn_endbgcolor_unselected">#ddd</color>
+    <color name="btn_startcolor_pressed">#999</color>
+    <color name="btn_endcolor_pressed">#666</color>
+    <color name="btn_startcolor">#aaa</color>
+    <color name="btn_endcolor">#ddd</color>
     <color name="font_color_light">#aaa</color>
     <color name="something_pressed">#ddd</color>
     <color name="white">#fff</color>
