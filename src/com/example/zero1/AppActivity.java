@@ -1,6 +1,7 @@
 package com.example.zero1;
 
 //import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -48,5 +49,8 @@ public class AppActivity extends android.support.v7.app.ActionBarActivity {
 	                // Ninjas rule
 	            break;
 	    }
+	}
+	public void onStationSelectCilcked(View view){
+		startActivity(new Intent(this,CityChoose.class));
 	}
 }

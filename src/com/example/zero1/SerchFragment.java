@@ -1,5 +1,6 @@
 package com.example.zero1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -21,5 +22,6 @@ public class SerchFragment extends Fragment {
 		
 		return rootview;
 	}
+
 
 }
