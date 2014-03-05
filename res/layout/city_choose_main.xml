@@ -9,36 +9,46 @@
         android:id="@+id/editText1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" >
+        android:ems="10"
+        >
 
-        <requestFocus />
     </EditText>
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/common_gap"
+        android:paddingTop="@dimen/common_gap"
         android:text="最近查询"
-        android:textSize="12sp" />
+        android:textSize="14sp" />
 
     <GridView
         android:id="@+id/recentlygd"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:horizontalSpacing="1dp"
+        android:verticalSpacing="1dp"
+        >
     </GridView>
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/common_gap"
+        android:paddingTop="@dimen/common_gap"
         android:text="热门城市"
-        android:textSize="12sp" />
+        android:textSize="14sp" />
 
     <GridView
         android:id="@+id/hotgd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/table_conersharp_bg" >
+        android:fadeScrollbars="true"
+        android:horizontalSpacing="1dp"
+        android:verticalSpacing="1dp"
+        android:background="@drawable/citygrid_conersharp_bg" >
 
     </GridView>
 

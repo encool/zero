@@ -53,17 +53,17 @@ public class CityAdapter extends BaseAdapter {
 //		 View itemview =new View(parent.getContext(),attributes);
 //		 itemview.findViewById(R.id.cityview);
 		
-		LinearLayout.LayoutParams param=new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
+		LinearLayout.LayoutParams param=new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
 //		LayoutParams gravity=new LayoutParams(position, position);
 //		param.gravity=Gravity.CENTER_HORIZONTAL;
-		LinearLayout rootview=new LinearLayout(parent.getContext());
-		
+		LinearLayout rootview=new LinearLayout(parent.getContext());		
 		TextView itemview=new TextView(parent.getContext());
 		rootview.addView(itemview,param);
-//		itemview.getLayoutParams().
-//		itemview.setLayoutParams(param);
-		rootview.setBackgroundResource(R.drawable.normal_bg_selector);
-		itemview.setGravity(Gravity.CENTER_HORIZONTAL);
+		rootview.setBackgroundResource(R.drawable.normal_bgcolor_selector);
+		rootview.setMinimumHeight(64);
+		itemview.setPadding(64, 0, 0, 0);
+		itemview.setGravity(Gravity.LEFT|Gravity.CENTER);
+		itemview.setTextSize(16);
 		itemview.setText(Integer.toString(position)+"…œ∫£");
 		
 		return rootview;
