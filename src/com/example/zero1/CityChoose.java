@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.GridView;
 
-class CityChoose extends Activity {
+public class CityChoose extends Activity {
 	
 	CityAdapter hcadpter;
 	CityAdapter rcadpter;
@@ -13,10 +13,12 @@ class CityChoose extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		setContentView(R.layout.city_choose_main);
 		super.onCreate(savedInstanceState);
 		hcadpter =new CityAdapter(a);
 		GridView gdview=(GridView)findViewById(R.id.hotgd);
 		gdview.setAdapter(hcadpter);
+		gdview.setNumColumns(3);
 	}
 
 }

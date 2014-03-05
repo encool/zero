@@ -5,16 +5,17 @@ import org.xmlpull.v1.XmlPullParser;
 import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.util.Xml;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
-@SuppressWarnings("unused")
 public class CityAdapter extends BaseAdapter {
 
     Resources resources;
@@ -52,14 +53,20 @@ public class CityAdapter extends BaseAdapter {
 //		 View itemview =new View(parent.getContext(),attributes);
 //		 itemview.findViewById(R.id.cityview);
 		
-		LinearLayout.LayoutParams param=new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
+		LinearLayout.LayoutParams param=new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
 //		LayoutParams gravity=new LayoutParams(position, position);
-		param.gravity=0x11;
+//		param.gravity=Gravity.CENTER_HORIZONTAL;
+		LinearLayout rootview=new LinearLayout(parent.getContext());
+		
 		TextView itemview=new TextView(parent.getContext());
-		itemview.setLayoutParams(param);
-		itemview.setBackgroundResource(R.drawable.normal_bg_selector);
-		itemview.setText(Integer.toString(position));
-		return itemview;
+		rootview.addView(itemview,param);
+//		itemview.getLayoutParams().
+//		itemview.setLayoutParams(param);
+		rootview.setBackgroundResource(R.drawable.normal_bg_selector);
+		itemview.setGravity(Gravity.CENTER_HORIZONTAL);
+		itemview.setText(Integer.toString(position)+"…œ∫£");
+		
+		return rootview;
 	}
 
 }
