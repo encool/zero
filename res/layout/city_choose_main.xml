@@ -27,7 +27,6 @@
         android:id="@+id/recentlygd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:horizontalSpacing="1dp"
         android:verticalSpacing="1dp"
         >
     </GridView>
@@ -46,7 +45,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fadeScrollbars="true"
-        android:horizontalSpacing="1dp"
         android:verticalSpacing="1dp"
         android:background="@drawable/citygrid_conersharp_bg" >
 

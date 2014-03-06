@@ -7,13 +7,15 @@
 
     <TextView
         android:id="@+id/cityview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_marginBottom="1dp"
         android:background="@drawable/normal_bgcolor_selector"
         android:clickable="true"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="Medium Text"
+        android:gravity="left|center_vertical"
+        android:minHeight="32dp"
+        android:paddingLeft="32dp"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </LinearLayout>

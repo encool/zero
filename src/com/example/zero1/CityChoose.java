@@ -15,8 +15,8 @@ public class CityChoose extends Activity {
 		// TODO Auto-generated method stub
 		setContentView(R.layout.city_choose_main);
 		super.onCreate(savedInstanceState);
-		hotadpter =new CityAdapter(a);
-		rcadpter =new CityAdapter(a);
+		hotadpter =new CityAdapter(a,this);
+		rcadpter =new CityAdapter(a,this);
 		GridView gdview=(GridView)findViewById(R.id.hotgd);
 		GridView rcgdview=(GridView)findViewById(R.id.recentlygd);
 		gdview.setAdapter(hotadpter);
