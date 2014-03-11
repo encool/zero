@@ -141,7 +141,8 @@
             android:clickable="true"
             android:orientation="horizontal"
             android:paddingBottom="@dimen/text_gap"
-            android:paddingTop="@dimen/text_gap" >
+            android:paddingTop="@dimen/text_gap"
+            android:onClick="onDateSelectClicked" >
 
             <TextView
                 android:id="@+id/textView5"
@@ -158,7 +159,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
                 android:gravity="right|center_vertical"
-                android:text="TextView" />
+                />
 
             <TextView
                 android:id="@+id/week"
@@ -179,7 +180,8 @@
             android:background="@drawable/normal_bgcolor_selector"
             android:clickable="true"
             android:paddingBottom="@dimen/text_gap"
-            android:paddingTop="@dimen/text_gap" >
+            android:paddingTop="@dimen/text_gap"
+            android:onClick="onTimeIntervalClicked" >
 
             <TextView
                 android:id="@+id/TextView02"

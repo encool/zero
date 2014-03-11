@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical"
     android:padding="@dimen/common_gap" >
 
@@ -10,44 +12,68 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:imeOptions="actionDone"
         >
 
     </EditText>
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/common_gap"
-        android:paddingTop="@dimen/common_gap"
-        android:text="最近查询"
-        android:textSize="14sp" />
-
-    <GridView
-        android:id="@+id/recentlygd"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:verticalSpacing="1dp"
-        >
-    </GridView>
+        android:layout_height="wrap_content" >
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/common_gap"
-        android:paddingTop="@dimen/common_gap"
-        android:text="热门城市"
-        android:textSize="14sp" />
+        <LinearLayout
+            android:id="@+id/bottomview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
 
-    <GridView
-        android:id="@+id/hotgd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fadeScrollbars="true"
-        android:verticalSpacing="1dp"
-        android:background="@drawable/citygrid_conersharp_bg" >
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/common_gap"
+                android:paddingTop="@dimen/common_gap"
+                android:text="最近查询"
+                android:textSize="14sp" />
 
-    </GridView>
+            <GridView
+                android:id="@+id/recentlygd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="3"
+                android:verticalSpacing="1dp" >
+            </GridView>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/common_gap"
+                android:paddingTop="@dimen/common_gap"
+                android:text="热门城市"
+                android:textSize="14sp" />
+
+            <GridView
+                android:id="@+id/hotgd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/citygrid_conersharp_bg"
+                android:fadeScrollbars="true"
+                android:numColumns="3"
+                android:verticalSpacing="1dp" >
+            </GridView>
+        </LinearLayout>
+
+        <GridView
+            android:id="@+id/resultgridview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="3"
+            android:verticalSpacing="1dp" >
+        </GridView>
+
+
+
+    </FrameLayout>
 
 </LinearLayout>

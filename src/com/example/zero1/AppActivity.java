@@ -1,20 +1,25 @@
 package com.example.zero1;
 
 //import android.app.ActionBar;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 //import android.support.v7.*;
 import android.support.v7.app.ActionBar;
+import android.view.LayoutInflater;
 //import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RadioButton;
 
 public class AppActivity extends android.support.v7.app.ActionBarActivity {
 	FragmentPagerAdapter ticketPageAdapter;
 	ViewPager viewpager;
+    private LayoutInflater inflater;
 	public AppActivity() {
 		// TODO Auto-generated constructor stub
 	}
@@ -26,6 +31,7 @@ public class AppActivity extends android.support.v7.app.ActionBarActivity {
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		viewpager=(ViewPager) findViewById(R.id.pager);
 		viewpager.setAdapter(new TicketPagerAdater(getSupportFragmentManager()));
+		
 	}
 
 	@Override
@@ -52,5 +58,17 @@ public class AppActivity extends android.support.v7.app.ActionBarActivity {
 	}
 	public void onStationSelectCilcked(View view){
 		startActivity(new Intent(this,CityChoose.class));
+	}
+	public void onDateSelectClicked(View view){
+		startActivity(new Intent(this,DateChoose.class));
+	}
+	public void onTimeIntervalClicked(View view){
+//		startActivity(new Intent(this,DateChoose.class));
+		Builder builder = new AlertDialog.Builder(this);
+		inflater = LayoutInflater.from(this);
+		View layout = inflater.inflate(R.layout.timeintervalselect, null);
+        builder.setView(layout);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
 	}
 }
