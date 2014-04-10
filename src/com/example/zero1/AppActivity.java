@@ -4,6 +4,8 @@ package com.example.zero1;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -20,9 +22,7 @@ public class AppActivity extends android.support.v7.app.ActionBarActivity {
 	FragmentPagerAdapter ticketPageAdapter;
 	ViewPager viewpager;
     private LayoutInflater inflater;
-	public AppActivity() {
-		// TODO Auto-generated constructor stub
-	}
+    TicketClient tc;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,7 +31,8 @@ public class AppActivity extends android.support.v7.app.ActionBarActivity {
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		viewpager=(ViewPager) findViewById(R.id.pager);
 		viewpager.setAdapter(new TicketPagerAdater(getSupportFragmentManager()));
-		
+		tc=new TicketClient(getApplicationContext());
+		new TicketClientInitTask().execute(tc);
 	}
 
 	@Override
@@ -70,5 +71,16 @@ public class AppActivity extends android.support.v7.app.ActionBarActivity {
         builder.setView(layout);
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+	}
+	private class TicketClientInitTask extends AsyncTask<TicketClient, Void, String> {
+
+		@Override
+		protected String doInBackground(TicketClient... params) {
+			// TODO Auto-generated method stub
+			String s=params[0].queryStation();
+			tc.stations=Utility.splitStringToArray(s, "@", "|");
+			return null;
+		}
+		
 	}
 }
