@@ -23,6 +23,7 @@ public class AppActivity extends android.support.v7.app.ActionBarActivity {
 	ViewPager viewpager;
     private LayoutInflater inflater;
     TicketClient tc;
+    com.example.zero1.db.DBmanager dbmanager;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -78,7 +79,9 @@ public class AppActivity extends android.support.v7.app.ActionBarActivity {
 		protected String doInBackground(TicketClient... params) {
 			// TODO Auto-generated method stub
 			String s=params[0].queryStation();
-			tc.stations=Utility.splitStringToArray(s, "@", "|");
+			TicketClient.stations=Utility.splitStringToArray(s, "@", "\\|");
+			dbmanager=new com.example.zero1.db.DBmanager(tc.context); 
+			dbmanager.add(TicketClient.stations);
 			return null;
 		}
 		

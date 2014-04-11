@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -28,7 +29,7 @@ public  class TicketClient {
 	final static String stationurl="https://kyfw.12306.cn/otn/resources/js/framework/station_name.js";
 	final static String queryurlformat="https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=%s&leftTicketDTO.from_station=%s&leftTicketDTO.to_station=%s&purpose_codes=%s";
 	final static String queryurl="https://kyfw.12306.cn/otn/leftTicket/query?";
-	static Station[] stations=new Station[3072];
+	static List<Station> stations;
 	AndroidHttpClient client=AndroidHttpClient.newInstance(null, null);
 	BasicHttpParams param=new BasicHttpParams();
 //	BasicHttpContext httpcontex=new BasicHttpContext();
@@ -96,7 +97,7 @@ public  class TicketClient {
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -121,37 +122,5 @@ public  class TicketClient {
 		}
 		Log.i("fuck", new String(sb));
 		return new String(sb);		
-	}
-	public static class Station{
-		String station_name_ch;
-		String station_code;
-		String station_name_pingyin;
-		public Station(String station_name_ch, String station_code,
-				String station_name_pingyin) {
-			this.station_name_ch = station_name_ch;
-			this.station_code = station_code;
-			this.station_name_pingyin = station_name_pingyin;
-		}
-		public Station() {
-			// TODO Auto-generated constructor stub
-		}
-		public String getStation_name_ch() {
-			return station_name_ch;
-		}
-		public void setStation_name_ch(String station_name_ch) {
-			this.station_name_ch = station_name_ch;
-		}
-		public String getStation_code() {
-			return station_code;
-		}
-		public void setStation_code(String station_code) {
-			this.station_code = station_code;
-		}
-		public String getStation_name_pingyin() {
-			return station_name_pingyin;
-		}
-		public void setStation_name_pingyin(String station_name_pingyin) {
-			this.station_name_pingyin = station_name_pingyin;
-		}
 	}
 }
