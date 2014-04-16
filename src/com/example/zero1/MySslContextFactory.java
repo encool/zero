@@ -70,6 +70,7 @@ public class MySslContextFactory {
 			context.init(null, tmf.getTrustManagers(), null); 
 		} catch (Exception e) {
 			// TODO: handle exception
+			
 		}
 
 		return context;

@@ -78,12 +78,11 @@ public class AppActivity extends android.support.v7.app.ActionBarActivity {
 		@Override
 		protected String doInBackground(TicketClient... params) {
 			// TODO Auto-generated method stub
-			String s=params[0].queryStation();
+			String s=params[0].queryStationURL();
 			TicketClient.stations=Utility.splitStringToArray(s, "@", "\\|");
 			dbmanager=new com.example.zero1.db.DBmanager(tc.context); 
 			dbmanager.add(TicketClient.stations);
 			return null;
-		}
-		
+		}		
 	}
 }

@@ -19,6 +19,8 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.DefaultedHttpContext;
 import org.apache.http.protocol.HttpContext;
 
+import com.example.zero1.db.DBmanager;
+
 import android.content.Context;
 import android.net.http.AndroidHttpClient;
 import android.util.Log;
@@ -35,6 +37,7 @@ public  class TicketClient {
 //	BasicHttpContext httpcontex=new BasicHttpContext();
 	Context context;
 	SSLContext sslcontex;
+	DBmanager dbmanager;
 	public TicketClient() {
 		// TODO Auto-generated constructor stub
 		client=AndroidHttpClient.newInstance("a");
@@ -84,7 +87,7 @@ public  class TicketClient {
 		}
 		return null;
 	}
-	public String queryStation(){
+	public String queryStationURL(){
 		URL url;
 		HttpsURLConnection con;
 		Log.i("fuck", "enter fuc queryStarion");
@@ -93,6 +96,7 @@ public  class TicketClient {
 			con=(HttpsURLConnection) url.openConnection();
 			con.setSSLSocketFactory(sslcontex.getSocketFactory());
 			String s=readStream(con.getInputStream());
+			con.disconnect();
 			return s;
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -116,11 +120,17 @@ public  class TicketClient {
 				sb.append(s);
 				n=reader.read(buffer);
 			}
+			reader.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Log.i("fuck", new String(sb));
+		
 		return new String(sb);		
 	}
+//	public void updateStationInfo(){
+//		dbmanager=new DBmanager(context);
+//		dbmanager.
+//	}
 }

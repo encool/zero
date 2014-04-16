@@ -1,31 +1,25 @@
 package com.example.zero1;
 
-import org.xmlpull.v1.XmlPullParser;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.util.AttributeSet;
-import android.util.Xml;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 
 public class CityAdapter extends BaseAdapter {
 
     Resources resources;
-	private int[] cityids;
+	private ArrayList<Station> stations;
 	private LayoutInflater mInflater;
 	
-	public CityAdapter(int[] a, Context context) {
+	public CityAdapter(ArrayList<Station> hotstation, Context context) {
 		super();
-		this.cityids = a;
+		this.stations = hotstation;
 		mInflater = LayoutInflater.from(context);
 	}
 
@@ -33,7 +27,7 @@ public class CityAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return cityids.length;
+		return stations.size();
 	}
 
 	@Override
@@ -72,7 +66,7 @@ public class CityAdapter extends BaseAdapter {
 //			mInflater=(LayoutInflater) parent.getContext().getSystemService(parent.getContext().LAYOUT_INFLATER_SERVICE);
 			convertView = mInflater.inflate(R.layout.cityitem_layout, null);
 			TextView itemview=(TextView) convertView.findViewById(R.id.cityview);
-			itemview.setText(Integer.toString(position)+"…œ∫£");
+			itemview.setText(Integer.toString(position)+stations.get(position).getStation_name_ch());
 		}
 		
 		
