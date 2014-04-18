@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -129,8 +130,13 @@ public  class TicketClient {
 		
 		return new String(sb);		
 	}
-//	public void updateStationInfo(){
-//		dbmanager=new DBmanager(context);
-//		dbmanager.
-//	}
+	public void updateStationInfo(){
+		dbmanager=new DBmanager(context);
+		if(dbmanager.isNeedUpdateStation()){
+			dbmanager.deleteData("station");
+			String s=this.queryStationURL();
+			TicketClient.stations=Utility.splitStringToArray(s, "@", "\\|");
+			dbmanager.add(TicketClient.stations);
+		}
+	}
 }

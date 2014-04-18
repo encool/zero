@@ -34,13 +34,13 @@ public class StationDBOpenHelper extends SQLiteOpenHelper {
 		db.execSQL("CREATE TABLE IF NOT EXISTS station" +  
                 "(_id INTEGER PRIMARY KEY AUTOINCREMENT, station_thr_code VARCHAR, station_name_ch TEXT, station_code VARCHAR, station_name_pingyin VARCHAR, station_pingyin_shou VARCHAR)");  
 		
-		Cursor c=db.rawQuery("select count(*) as c from Sqlite_master  where type ='table' and name ='station'", null);
+		Cursor c=db.rawQuery("select count(*) as c from Sqlite_master  where type ='table' and name ='stationupdateinfo'", null);
 		int boo=c.getCount();
-		if(boo==0){
+//		if(boo==0){
 			db.execSQL("CREATE TABLE IF NOT EXISTS stationupdateinfo" +
 					"(_id INTEGER PRIMARY KEY,tablename TEXT,last_update_time INTEGER,station_count INTEGER");
 			db.execSQL("INTSERT INTO stationupdateinfo(_id,tablename,last_update_time,station_count) VALUES(1,'station',0,0)");
-		}
+//		}
 		
 	}
 

@@ -1,5 +1,6 @@
 package com.example.zero1.db;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.example.zero1.Station;
@@ -33,13 +34,23 @@ public class DBmanager {
         	writabledb.endTransaction();    //½áÊøÊÂÎñ  
         }  
 	}
-//	public boolean isNeedUpdateStation(){
-//		Cursor c=readabledb.query("starion", new String[]{"last_update_time","station_count"}, "tablename = 'station'", null, null, null, null);
-//		while(c.moveToNext()){
-//			int lastupdate=c.getInt(c.getColumnIndex("last_update_time"));
-//			int stationcount=c.getInt(c.getColumnIndex("station_count"));
-//		}
-//	}
+	public boolean deleteData(String tablename){
+		writabledb.delete(tablename, null, null);
+		return false;	
+	}
+	public boolean isNeedUpdateStation(){
+		Date d = new Date();
+		long i=d.getTime();
+		Cursor c=readabledb.query("stationupdateinfo", new String[]{"last_update_time","station_count"}, null, null, null, null, null);
+		while(c.moveToNext()){
+			long lastupdate=c.getLong(c.getColumnIndex("last_update_time"));
+			int stationcount=c.getInt(c.getColumnIndex("station_count"));
+			if((i-lastupdate)<2592000000L||stationcount==0){
+				return true;
+			}			
+		}
+		return false;
+	}
 	public ArrayList<Station> queryStationFromdb(int limit,String s){
 		ArrayList<Station> Stations=new ArrayList<Station>();
 		String stationstring=Utility.prepareString(s);
@@ -67,7 +78,7 @@ public class DBmanager {
 		return Stations;	
 	}
 	public void closeBD(){
-		writabledb.close();
-		readabledb.close();
+		this.writabledb.close();
+		this.readabledb.close();
 	}
 }
