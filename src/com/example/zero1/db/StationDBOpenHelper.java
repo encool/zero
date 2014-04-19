@@ -30,17 +30,18 @@ public class StationDBOpenHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
+		//没表时--调试
+
 		// TODO Auto-generated method stub
 		db.execSQL("CREATE TABLE IF NOT EXISTS station" +  
                 "(_id INTEGER PRIMARY KEY AUTOINCREMENT, station_thr_code VARCHAR, station_name_ch TEXT, station_code VARCHAR, station_name_pingyin VARCHAR, station_pingyin_shou VARCHAR)");  
 		
-		Cursor c=db.rawQuery("select count(*) as c from Sqlite_master  where type ='table' and name ='stationupdateinfo'", null);
-		int boo=c.getCount();
-//		if(boo==0){
-			db.execSQL("CREATE TABLE IF NOT EXISTS stationupdateinfo" +
-					"(_id INTEGER PRIMARY KEY,tablename TEXT,last_update_time INTEGER,station_count INTEGER");
-			db.execSQL("INTSERT INTO stationupdateinfo(_id,tablename,last_update_time,station_count) VALUES(1,'station',0,0)");
-//		}
+
+
+		db.execSQL("CREATE TABLE IF NOT EXISTS stationupdateinfo" +
+					"(_id INTEGER PRIMARY KEY,tablename TEXT,last_update_time INTEGER,station_count INTEGER)");
+		db.execSQL("INSERT INTO stationupdateinfo(_id,tablename,last_update_time,station_count) VALUES(1,'station',0,0)");
+
 		
 	}
 
@@ -48,6 +49,14 @@ public class StationDBOpenHelper extends SQLiteOpenHelper {
 	public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void onOpen(SQLiteDatabase db) {
+		// TODO Auto-generated method stub
+		super.onOpen(db);
+//		Cursor c=db.rawQuery("select count(*) as c from Sqlite_master  where type ='table' and name ='stationupdateinf'", null);
+//		int boo=c.getCount();
 	}
 
 }

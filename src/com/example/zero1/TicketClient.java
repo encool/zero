@@ -130,13 +130,18 @@ public  class TicketClient {
 		
 		return new String(sb);		
 	}
-	public void updateStationInfo(){
+	public boolean updateStationInfo(){
 		dbmanager=new DBmanager(context);
 		if(dbmanager.isNeedUpdateStation()){
 			dbmanager.deleteData("station");
 			String s=this.queryStationURL();
-			TicketClient.stations=Utility.splitStringToArray(s, "@", "\\|");
-			dbmanager.add(TicketClient.stations);
+			if(s!=null){
+				TicketClient.stations=Utility.splitStringToArray(s, "@", "\\|");
+				dbmanager.add(TicketClient.stations);
+				dbmanager.updateStationTableInfo(TicketClient.stations.size());
+				return true;
+			}
 		}
+		return false;
 	}
 }

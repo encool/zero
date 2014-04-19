@@ -4,8 +4,10 @@ import java.util.Date;
 import java.util.List;
 
 import com.example.zero1.Station;
+import com.example.zero1.TicketClient;
 import com.example.zero1.Utility;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -45,11 +47,19 @@ public class DBmanager {
 		while(c.moveToNext()){
 			long lastupdate=c.getLong(c.getColumnIndex("last_update_time"));
 			int stationcount=c.getInt(c.getColumnIndex("station_count"));
-			if((i-lastupdate)<2592000000L||stationcount==0){
+			if((i-lastupdate)>2592000000L||stationcount==0){
 				return true;
 			}			
 		}
 		return false;
+	}
+	public void updateStationTableInfo(int count){
+		ContentValues val=new ContentValues();
+		Date d = new Date();
+		long i=d.getTime();
+		val.put("last_update_time", i);
+		val.put("station_count",count);
+		writabledb.update("stationupdateinfo", val, null, null);
 	}
 	public ArrayList<Station> queryStationFromdb(int limit,String s){
 		ArrayList<Station> Stations=new ArrayList<Station>();
