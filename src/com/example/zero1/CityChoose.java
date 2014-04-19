@@ -68,13 +68,19 @@ public class CityChoose extends Activity implements TextWatcher{
 		if(s!=null&&(bottomview.getVisibility()==View.VISIBLE)){
 			bottomview.setVisibility(View.INVISIBLE);
 			queryresultgdview.setVisibility(View.VISIBLE);
+			String ss=Utility.prepareString(s.toString());
+			Log.i("fuck after", ss);
+			ArrayList<Station> stations=dbmanager.queryStationFromdb(20, ss);
+			queryresultadapter.setStations(stations);
+			queryresultadapter.notifyDataSetChanged();
 			
 		}
-		
+		Log.i("fuck befor", s.toString());
 		if(s.length()==0){
 			bottomview.setVisibility(View.VISIBLE);
 			queryresultgdview.setVisibility(View.INVISIBLE);
 		}
+
 	}
 
 }

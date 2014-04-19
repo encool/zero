@@ -142,6 +142,7 @@ public  class TicketClient {
 				return true;
 			}
 		}
+		dbmanager.closeBD();
 		return false;
 	}
 }

@@ -17,9 +17,9 @@ public class CityAdapter extends BaseAdapter {
 	private ArrayList<Station> stations;
 	private LayoutInflater mInflater;
 	
-	public CityAdapter(ArrayList<Station> hotstation, Context context) {
+	public CityAdapter(ArrayList<Station> stations, Context context) {
 		super();
-		this.stations = hotstation;
+		this.stations = stations;
 		mInflater = LayoutInflater.from(context);
 	}
 
@@ -71,6 +71,11 @@ public class CityAdapter extends BaseAdapter {
 		
 		
 		return convertView;
+	}
+
+
+	public void setStations(ArrayList<Station> stations) {
+		this.stations = stations;
 	}
 
 }
