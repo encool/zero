@@ -69,6 +69,7 @@
             android:padding="@dimen/table_row1_margin" >
             
 			<LinearLayout
+			    android:id="@+id/from_station" 
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:layout_weight="3"
@@ -104,13 +105,13 @@
                 android:background="@drawable/exchange_btn" />
 
 			<LinearLayout
+			    android:id="@+id/to_station"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:layout_weight="3"
 			    android:background="@drawable/station_text_bg"
 			    android:clickable="true"
 			    android:gravity="center_horizontal"
-			    android:onClick="onStationSelectCilcked"
 			    android:orientation="vertical" >
 			
 			    <TextView

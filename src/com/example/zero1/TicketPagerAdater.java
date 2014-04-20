@@ -17,7 +17,7 @@ public class TicketPagerAdater extends FragmentPagerAdapter {
 		Fragment sf=null;
 		switch(index){
 		case 0:
-			sf=new SerchFragment();
+			sf=new QueryFragment();
 		}
 		return sf;
 	}

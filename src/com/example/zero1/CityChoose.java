@@ -5,16 +5,20 @@ import java.util.ArrayList;
 import com.example.zero1.db.DBmanager;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.TextView;
 
 public class CityChoose extends Activity implements TextWatcher{
-	
+	final static int QUERY_RESULT_CODE=1;
 	CityAdapter hotcityadpter;
 	CityAdapter recentcityadpter;
 	CityAdapter queryresultadapter;
@@ -42,6 +46,23 @@ public class CityChoose extends Activity implements TextWatcher{
 		bottomview=findViewById(R.id.bottomview);
 		queryresultgdview.setAdapter(queryresultadapter);
 		queryresultgdview.setNumColumns(3);
+		queryresultgdview.setOnItemClickListener(new OnItemClickListener(){
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View view, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				TextView tv=(TextView) view.findViewById(R.id.cityview);
+				String station=tv.getText().toString();
+	            Intent data=new Intent();  
+	            data.putExtra("station_ch_name", station);  
+	            //请求代码可以自己设置，这里设置成20  
+	            setResult(QUERY_RESULT_CODE,data);  
+	            //关闭掉这个Activity  
+	            finish(); 
+			}
+			
+		});
 		gdview.setAdapter(hotcityadpter);
 		gdview.setNumColumns(3);
 		rcgdview.setAdapter(recentcityadpter);
