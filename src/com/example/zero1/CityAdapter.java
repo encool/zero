@@ -13,10 +13,10 @@ import android.widget.TextView;
 
 public class CityAdapter extends BaseAdapter {
 
-    Resources resources;
-	private ArrayList<Station> stations;
+	Resources resources;
+	ArrayList<Station> stations=new ArrayList<Station>();
 	private LayoutInflater mInflater;
-	
+	 
 	public CityAdapter(ArrayList<Station> stations, Context context) {
 		super();
 		this.stations = stations;
@@ -62,20 +62,33 @@ public class CityAdapter extends BaseAdapter {
 //		itemview.setGravity(Gravity.LEFT|Gravity.CENTER);
 //		itemview.setTextSize(16);
 //		itemview.setText(Integer.toString(position)+"…œ∫£");
-		if(convertView == null){
+//		if(convertView == null){
 //			mInflater=(LayoutInflater) parent.getContext().getSystemService(parent.getContext().LAYOUT_INFLATER_SERVICE);
 			convertView = mInflater.inflate(R.layout.cityitem_layout, null);
 			TextView itemview=(TextView) convertView.findViewById(R.id.cityview);
 			itemview.setText(Integer.toString(position)+stations.get(position).getStation_name_ch());
-		}
+//		}
 		
 		
 		return convertView;
 	}
 
 
-	public void setStations(ArrayList<Station> stations) {
-		this.stations = stations;
+	public void setStationsAndRefresh(ArrayList<Station> stations) {
+//		this.stations = stations;
+		int i;
+//		for(i=0;i<this.stations.size();i++){
+//			this.stations.set(i, stations.get(i));
+//		}
+//		if(this.stations.size()>stations.size()){
+//			this.stations.remove(i);
+//		}else{
+//			this.stations.addAll(i, stations);
+//		}
+		this.stations.clear();
+//		this.notifyDataSetChanged();
+		this.stations.addAll(stations);
+		this.notifyDataSetChanged();
 	}
 
 }

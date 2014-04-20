@@ -32,7 +32,7 @@ public class CityChoose extends Activity implements TextWatcher{
 		super.onCreate(savedInstanceState);
 		dbmanager=new DBmanager(this);
 		hotstation=dbmanager.queryStationFromdb(10,"ld");
-		recentstation=dbmanager.queryStationFromdb(15,"ls");
+		recentstation=dbmanager.queryStationFromdb(15,"∂¡ È");
 		hotcityadpter =new CityAdapter(hotstation,this);
 		recentcityadpter =new CityAdapter(recentstation,this);
 		queryresultadapter= new CityAdapter(recentstation,this);
@@ -68,17 +68,19 @@ public class CityChoose extends Activity implements TextWatcher{
 		if(s!=null&&(bottomview.getVisibility()==View.VISIBLE)){
 			bottomview.setVisibility(View.INVISIBLE);
 			queryresultgdview.setVisibility(View.VISIBLE);
-			String ss=Utility.prepareString(s.toString());
-			Log.i("fuck after", ss);
-			ArrayList<Station> stations=dbmanager.queryStationFromdb(20, ss);
-			queryresultadapter.setStations(stations);
-			queryresultadapter.notifyDataSetChanged();
-			
+//			String ss=Utility.prepareString(s.toString());
+//			Log.i("fuck after", ss);
+		
 		}
-		Log.i("fuck befor", s.toString());
 		if(s.length()==0){
 			bottomview.setVisibility(View.VISIBLE);
 			queryresultgdview.setVisibility(View.INVISIBLE);
+		}else{
+//			queryresultadapter.stations.clear();
+//			queryresultadapter.notifyDataSetChanged();
+			ArrayList<Station> stations=dbmanager.queryStationFromdb(20, s.toString());
+			queryresultadapter.setStationsAndRefresh(stations);
+//			queryresultadapter.notifyDataSetChanged();
 		}
 
 	}
