@@ -36,7 +36,7 @@ public class QueryFragment extends Fragment {
 				// TODO Auto-generated method stub
 				startActivityForResult(new Intent(getActivity(),CityChoose.class), LEFTSTATION_REQUEST_CODE);
 			}});
-		LinearLayout to_station=(LinearLayout) getActivity().findViewById(R.id.from_station);
+		LinearLayout to_station=(LinearLayout) getActivity().findViewById(R.id.to_station);
 		to_station.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -62,11 +62,13 @@ public class QueryFragment extends Fragment {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data); 
-		if(requestCode==LEFTSTATION_REQUEST_CODE){
+		if(requestCode==LEFTSTATION_REQUEST_CODE&&resultCode==CityChoose.QUERY_RESULT_CODE){
 			leftstationview.setText(data.getExtras().getString("station_ch_name"));
+			leftstationview.setTag(data.getExtras().getString("station_code"));
 		}
-		if(requestCode==RIGHTSTATION_REQUEST_CODE){
+		if(requestCode==RIGHTSTATION_REQUEST_CODE&&resultCode==CityChoose.QUERY_RESULT_CODE){
 			rightstationview.setText(data.getExtras().getString("station_ch_name"));
+			leftstationview.setTag(data.getExtras().getString("station_code"));
 		}
 	}
 }

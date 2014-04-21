@@ -12,7 +12,7 @@
         android:layout_gravity="center_vertical|center_horizontal"
         android:layout_marginBottom="1dp"
         android:background="@drawable/normal_bgcolor_selector"
-        android:clickable="true"
+        android:clickable="false"
         android:gravity="left|center_vertical"
         android:minHeight="32dp"
         android:paddingLeft="32dp"

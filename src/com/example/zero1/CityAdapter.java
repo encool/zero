@@ -67,6 +67,7 @@ public class CityAdapter extends BaseAdapter {
 			convertView = mInflater.inflate(R.layout.cityitem_layout, null);
 			TextView itemview=(TextView) convertView.findViewById(R.id.cityview);
 			itemview.setText(Integer.toString(position)+stations.get(position).getStation_name_ch());
+			itemview.setTag(stations.get(position));
 //		}
 		
 		

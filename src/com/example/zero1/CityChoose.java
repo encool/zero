@@ -53,9 +53,12 @@ public class CityChoose extends Activity implements TextWatcher{
 					long arg3) {
 				// TODO Auto-generated method stub
 				TextView tv=(TextView) view.findViewById(R.id.cityview);
-				String station=tv.getText().toString();
-	            Intent data=new Intent();  
-	            data.putExtra("station_ch_name", station);  
+				Station station=(Station) tv.getTag();
+				String station_ch_name=station.station_name_ch;
+				String station_code=station.station_code;
+	            Intent data=new Intent();
+	            data.putExtra("station_code", station_code);
+	            data.putExtra("station_ch_name", station_ch_name);  
 	            //请求代码可以自己设置，这里设置成20  
 	            setResult(QUERY_RESULT_CODE,data);  
 	            //关闭掉这个Activity  
