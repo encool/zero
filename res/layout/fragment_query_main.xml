@@ -137,7 +137,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/tableRow2"
+            android:id="@+id/data_select_btn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_bet_row"
@@ -153,6 +153,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:clickable="false"
                 android:gravity="center_vertical"
                 android:paddingLeft="@dimen/text_gap"
                 android:text="日期" />
@@ -162,13 +163,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
-                android:gravity="right|center_vertical"
-                />
+                android:clickable="false"
+                android:gravity="right|center_vertical" />
 
             <TextView
                 android:id="@+id/week"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="false"
                 android:drawablePadding="@dimen/text_half_gap"
                 android:drawableRight="@drawable/arrow_right_12_19"
                 android:gravity="right|center_vertical"
@@ -178,6 +180,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/time_select_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_bet_row"
@@ -192,6 +195,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
+                android:clickable="false"
                 android:gravity="left|center_vertical"
                 android:paddingLeft="@dimen/text_gap"
                 android:text="时段" />
@@ -201,6 +205,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:clickable="false"
                 android:drawablePadding="@dimen/text_half_gap"
                 android:drawableRight="@drawable/arrow_right_12_19"
                 android:gravity="right|center_vertical"
@@ -209,6 +214,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/type_select_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_bet_row"
@@ -223,6 +229,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
+                android:clickable="false"
                 android:gravity="left|center_vertical"
                 android:paddingLeft="@dimen/text_gap"
                 android:text="车型" />
@@ -232,6 +239,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:clickable="false"
                 android:drawablePadding="@dimen/text_half_gap"
                 android:drawableRight="@drawable/arrow_right_12_19"
                 android:gravity="right|center_vertical"
@@ -247,7 +255,7 @@
         android:layout_below="@id/midtable" >
 
         <Button
-            android:id="@+id/book_stu_btn"
+            android:id="@+id/query_stu_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="1dp"
@@ -257,7 +265,7 @@
             android:minHeight="36dip"  />
 
         <Button
-            android:id="@+id/book_ordinary_btn"
+            android:id="@+id/query_ordinary_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
