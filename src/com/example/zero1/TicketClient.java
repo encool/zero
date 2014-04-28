@@ -30,7 +30,7 @@ import android.util.Log;
 public  class TicketClient {
 
 	final static String stationurl="https://kyfw.12306.cn/otn/resources/js/framework/station_name.js";
-	final static String queryurlformat="https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=%s&leftTicketDTO.from_station=%s&leftTicketDTO.to_station=%s&purpose_codes=%s";
+	public final static String queryurlformat="https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=%s&leftTicketDTO.from_station=%s&leftTicketDTO.to_station=%s&purpose_codes=%s";
 	final static String queryurl="https://kyfw.12306.cn/otn/leftTicket/query?";
 	static List<Station> stations;
 	AndroidHttpClient client=AndroidHttpClient.newInstance(null, null);

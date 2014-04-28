@@ -7,6 +7,10 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="19" />
+    <instrumentation 
+        android:name="android.test.InstrumentationTestRunner"
+      	android:targetPackage="com.example.zero1"
+   	 	android:label="Test for application!"/>
 
     <uses-permission android:name="android.permission.INTERNET" >
     </uses-permission>
@@ -44,6 +48,7 @@
             android:name="com.example.zero1.TrainsInfoActivity"
             android:label="@string/title_activity_trains_info" >
         </activity>
+        <uses-library android:name="android.test.runner"/>
     </application>
 
 </manifest>
