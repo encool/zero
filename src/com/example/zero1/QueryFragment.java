@@ -38,6 +38,7 @@ public class QueryFragment extends Fragment {
 	
 	Activity activity;
 	
+	SimpleDateFormat dfforquery=new SimpleDateFormat("yyyy-MM-dd");
 	SimpleDateFormat df=new SimpleDateFormat("yyyyƒÍMM‘¬dd»’");
 	SimpleDateFormat dfweek=new SimpleDateFormat("EEEE");
 	
@@ -54,7 +55,7 @@ public class QueryFragment extends Fragment {
 		return rootview;
 	}
 	void setListener(){
-		LinearLayout from_station=(LinearLayout) activity.findViewById(R.id.from_station);
+		LinearLayout from_station=(LinearLayout) activity.findViewById(R.id.itemview_from_station);
 		from_station.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -113,11 +114,16 @@ public class QueryFragment extends Fragment {
 			}});
 		querybtn.setOnClickListener(new OnClickListener(){
 
+			@SuppressLint("NewApi")
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				startActivity(new Intent(activity, TrainsInfoActivity.class));
-			}});
+				Bundle bundle=new Bundle(); 
+				bundle.putString("date", dfforquery.format(dateview.getTag()));
+				bundle.putString("to_station", (String)rightstationview.getTag());
+				bundle.putString("from_station",(String)leftstationview.getTag()); 
+				activity.startActivity(new Intent(activity, TrainsInfoActivity.class).putExtra("traininfo", bundle));
+			}}); 
 	}
 
 	void setView(){
@@ -153,7 +159,7 @@ public class QueryFragment extends Fragment {
 		}
 		if(requestCode==RIGHTSTATION_REQUEST_CODE&&resultCode==CityChoose.QUERY_RESULT_CODE){
 			rightstationview.setText(data.getExtras().getString("station_ch_name"));
-			leftstationview.setTag(data.getExtras().getString("station_code"));
+			rightstationview.setTag(data.getExtras().getString("station_code"));
 		}
 	}
 }

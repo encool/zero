@@ -9,6 +9,7 @@
     tools:context=".TrainsInfoActivity" >
 
     <ListView
+        android:id="@+id/trainlist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/hello_world" />

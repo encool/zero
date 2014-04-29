@@ -69,7 +69,7 @@
             android:padding="@dimen/table_row1_margin" >
             
 			<LinearLayout
-			    android:id="@+id/from_station"
+			    android:id="@+id/itemview_from_station"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:layout_weight="3"
@@ -79,7 +79,7 @@
 			    android:orientation="vertical" >
 			
 			    <TextView
-			        android:id="@+id/textView1"
+			        android:id="@+id/train_code"
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
 			        android:paddingBottom="@dimen/text_half_gap"
@@ -117,7 +117,7 @@
 			    android:orientation="vertical" >
 			
 			    <TextView
-			        android:id="@+id/textView1"
+			        android:id="@+id/train_code"
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
 			        android:paddingBottom="@dimen/text_half_gap"
@@ -149,7 +149,7 @@
             android:onClick="onDateSelectClicked" >
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/arrive_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

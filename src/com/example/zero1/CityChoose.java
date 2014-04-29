@@ -59,7 +59,7 @@ public class CityChoose extends Activity implements TextWatcher{
 	            Intent data=new Intent();
 	            data.putExtra("station_code", station_code);
 	            data.putExtra("station_ch_name", station_ch_name);  
-	            //请求代码可以自己设置，这里设置成20  
+	            //请求代码可以自己设置
 	            setResult(QUERY_RESULT_CODE,data);  
 	            //关闭掉这个Activity  
 	            finish(); 

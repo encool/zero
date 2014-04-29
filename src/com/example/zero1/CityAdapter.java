@@ -12,8 +12,7 @@ import android.widget.TextView;
 
 
 public class CityAdapter extends BaseAdapter {
-
-	Resources resources;
+	
 	ArrayList<Station> stations=new ArrayList<Station>();
 	private LayoutInflater mInflater;
 	 
