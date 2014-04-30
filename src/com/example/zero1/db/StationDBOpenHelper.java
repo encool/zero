@@ -1,5 +1,8 @@
 package com.example.zero1.db;
 
+import java.io.File;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
@@ -10,6 +13,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class StationDBOpenHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "station.db";  
     private static final int DATABASE_VERSION = 1; 
+    static final int RECENTSTATIONNUM = 9;
 	public StationDBOpenHelper(Context context, String name,
 			CursorFactory factory, int version) {
 		super(context, name, factory, version);
@@ -41,7 +45,8 @@ public class StationDBOpenHelper extends SQLiteOpenHelper {
 		db.execSQL("CREATE TABLE IF NOT EXISTS stationupdateinfo" +
 					"(_id INTEGER PRIMARY KEY,tablename TEXT,last_update_time INTEGER,station_count INTEGER)");
 		db.execSQL("INSERT INTO stationupdateinfo(_id,tablename,last_update_time,station_count) VALUES(1,'station',0,0)");
-
+		db.execSQL("CREATE TABLE IF NOT EXISTS recentlystation" +
+				"(_id INTEGER PRIMARY KEY AUTOINCREMENT, station_thr_code VARCHAR, station_name_ch TEXT, station_code VARCHAR, station_name_pingyin VARCHAR, station_pingyin_shou VARCHAR, time INTEGER)");
 		
 	}
 
@@ -51,10 +56,15 @@ public class StationDBOpenHelper extends SQLiteOpenHelper {
 
 	}
 
+	@SuppressLint("NewApi")
 	@Override
 	public void onOpen(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		super.onOpen(db);
+//		db.execSQL("CREATE TABLE IF NOT EXISTS recentlystation" +
+//				"(_id INTEGER PRIMARY KEY AUTOINCREMENT, station_thr_code VARCHAR, station_name_ch TEXT, station_code VARCHAR, station_name_pingyin VARCHAR, station_pingyin_shou VARCHAR, time INTEGER)");
+		
+//		db.deleteDatabase(new File("station.db"));
 //		Cursor c=db.rawQuery("select count(*) as c from Sqlite_master  where type ='table' and name ='stationupdateinf'", null);
 //		int boo=c.getCount();
 	}

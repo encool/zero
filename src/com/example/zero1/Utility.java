@@ -92,13 +92,14 @@ public class Utility {
 					array.add(infohoder);
 					
 				}
-				return array;
+				
 			}
 			
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
-		return null;
+		return array;
 	}
 }

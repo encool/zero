@@ -65,7 +65,7 @@ public class CityAdapter extends BaseAdapter {
 //			mInflater=(LayoutInflater) parent.getContext().getSystemService(parent.getContext().LAYOUT_INFLATER_SERVICE);
 			convertView = mInflater.inflate(R.layout.cityitem_layout, null);
 			TextView itemview=(TextView) convertView.findViewById(R.id.cityview);
-			itemview.setText(Integer.toString(position)+stations.get(position).getStation_name_ch());
+			itemview.setText(stations.get(position).getStation_name_ch());
 			itemview.setTag(stations.get(position));
 //		}
 		
@@ -75,18 +75,8 @@ public class CityAdapter extends BaseAdapter {
 
 
 	public void setStationsAndRefresh(ArrayList<Station> stations) {
-//		this.stations = stations;
-		int i;
-//		for(i=0;i<this.stations.size();i++){
-//			this.stations.set(i, stations.get(i));
-//		}
-//		if(this.stations.size()>stations.size()){
-//			this.stations.remove(i);
-//		}else{
-//			this.stations.addAll(i, stations);
-//		}
+
 		this.stations.clear();
-//		this.notifyDataSetChanged();
 		this.stations.addAll(stations);
 		this.notifyDataSetChanged();
 	}

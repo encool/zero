@@ -23,10 +23,13 @@ public class CityChoose extends Activity implements TextWatcher{
 	CityAdapter recentcityadpter;
 	CityAdapter queryresultadapter;
 	GridView queryresultgdview;
+	GridView recentlyview;
+	GridView hotcityview;
 	View bottomview;
 	EditText serchtext;
 	ArrayList<Station> hotstation;
 	ArrayList<Station> recentstation;
+	ArrayList<Station> queriedstation=new ArrayList<Station>();
 	DBmanager dbmanager;
 	int[] b={11,211,311,4111}; 
 	@Override
@@ -35,13 +38,13 @@ public class CityChoose extends Activity implements TextWatcher{
 		setContentView(R.layout.city_choose_main);
 		super.onCreate(savedInstanceState);
 		dbmanager=new DBmanager(this);
-		hotstation=dbmanager.queryStationFromdb(10,"ld");
-		recentstation=dbmanager.queryStationFromdb(15,"读书");
+		hotstation=dbmanager.queryStationFromdb(1,"gz");
+		recentstation=dbmanager.getRecentlyStation();
 		hotcityadpter =new CityAdapter(hotstation,this);
 		recentcityadpter =new CityAdapter(recentstation,this);
-		queryresultadapter= new CityAdapter(recentstation,this);
-		GridView gdview=(GridView)findViewById(R.id.hotgd);
-		GridView rcgdview=(GridView)findViewById(R.id.recentlygd);
+		queryresultadapter= new CityAdapter(queriedstation,this);
+		hotcityview=(GridView)findViewById(R.id.hotgd);
+		recentlyview=(GridView)findViewById(R.id.recentlygd);
 		queryresultgdview=(GridView)findViewById(R.id.resultgridview);
 		bottomview=findViewById(R.id.bottomview);
 		queryresultgdview.setAdapter(queryresultadapter);
@@ -62,14 +65,58 @@ public class CityChoose extends Activity implements TextWatcher{
 	            //请求代码可以自己设置
 	            setResult(QUERY_RESULT_CODE,data);  
 	            //关闭掉这个Activity  
+	            dbmanager.addRecentlyStation(station);
 	            finish(); 
 			}
 			
 		});
-		gdview.setAdapter(hotcityadpter);
-		gdview.setNumColumns(3);
-		rcgdview.setAdapter(recentcityadpter);
-		rcgdview.setNumColumns(3);
+		hotcityview.setOnItemClickListener(new OnItemClickListener(){
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View view, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				TextView tv=(TextView) view.findViewById(R.id.cityview);
+				Station station=(Station) tv.getTag();
+				String station_ch_name=station.station_name_ch;
+				String station_code=station.station_code;
+	            Intent data=new Intent();
+	            data.putExtra("station_code", station_code);
+	            data.putExtra("station_ch_name", station_ch_name);  
+	            //请求代码可以自己设置
+	            setResult(QUERY_RESULT_CODE,data);  
+	            //关闭掉这个Activity  
+	            dbmanager.addRecentlyStation(station);
+	            finish(); 
+			}
+			
+		});
+		recentlyview.setOnItemClickListener(new OnItemClickListener(){
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View view, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				TextView tv=(TextView) view.findViewById(R.id.cityview);
+				Station station=(Station) tv.getTag();
+				String station_ch_name=station.station_name_ch;
+				String station_code=station.station_code;
+	            Intent data=new Intent();
+	            data.putExtra("station_code", station_code);
+	            data.putExtra("station_ch_name", station_ch_name);  
+	            //请求代码可以自己设置
+	            setResult(QUERY_RESULT_CODE,data);  
+	            //关闭掉这个Activity  
+	            dbmanager.addRecentlyStation(station);
+	            finish(); 
+			}
+			
+		});
+
+		hotcityview.setAdapter(hotcityadpter);
+		hotcityview.setNumColumns(3);
+		recentlyview.setAdapter(recentcityadpter);
+		recentlyview.setNumColumns(3);
 		queryresultgdview.setVisibility(View.INVISIBLE);
 		serchtext=(EditText) findViewById(R.id.editText1);
 		serchtext.addTextChangedListener(this);
@@ -107,6 +154,12 @@ public class CityChoose extends Activity implements TextWatcher{
 //			queryresultadapter.notifyDataSetChanged();
 		}
 
+	}
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		dbmanager.closeBD();
 	}
 
 }

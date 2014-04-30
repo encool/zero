@@ -133,6 +133,7 @@ public class QueryFragment extends Fragment {
 		dateview=(TextView) activity.findViewById(R.id.date);
 		date=new Date();
 		dateview.setText(df.format(date));	
+		dateview.setTag(date);
 		weekview=(TextView) activity.findViewById(R.id.week);
 		weekview.setText(dfweek.format(date));
 		

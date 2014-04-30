@@ -48,9 +48,10 @@ public class TrainsInfoActivity extends Activity {
 		@Override
 		protected ArrayList<TrainInfoHoder> doInBackground(TicketClient... params) {
 			// TODO Auto-generated method stub
-			
+
 			String s=params[0].queryTrainInfo(AppActivity.tc.queryurlformat,bundle.getString("date"),bundle.getString("from_station"),bundle.getString("to_station"), "ADULT");
 			return Utility.ParseJsonToArray(s);
+			
 		}
 	     protected void onPostExecute(ArrayList<TrainInfoHoder> result) {
 	    	 Log.i("fuck", "notifydatasetchanged");

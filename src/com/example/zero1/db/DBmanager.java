@@ -3,22 +3,23 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.example.zero1.Station;
-import com.example.zero1.TicketClient;
-import com.example.zero1.Utility;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.example.zero1.Station;
+import com.example.zero1.Utility;
 
 public class DBmanager {
 
 	private StationDBOpenHelper helper;
 	private SQLiteDatabase writabledb;
 	private SQLiteDatabase readabledb;
+	Context context;
 	public DBmanager(Context context) {
 		// TODO Auto-generated constructor st ub
+		this.context=context;
         helper = new StationDBOpenHelper(context);  
         //因为getWritableDatabase内部调用了mContext.openOrCreateDatabase(mName, 0, mFactory);  
         //所以要确保context已初始化,我们可以把实例化DBManager的步骤放在Activity的onCreate里  
@@ -51,6 +52,7 @@ public class DBmanager {
 				return true;
 			}			
 		}
+		c.close();
 		return false;
 	}
 	public void updateStationTableInfo(int count){
@@ -90,5 +92,49 @@ public class DBmanager {
 	public void closeBD(){
 		this.writabledb.close();
 		this.readabledb.close();
+	}
+	public void addRecentlyStation(Station station){
+		Cursor c=readabledb.rawQuery("select count(*) as num from recentlystation", null);
+		int num;
+		c.moveToNext();
+		num=c.getInt(c.getColumnIndex("num"));
+		c.close();
+		if(num<StationDBOpenHelper.RECENTSTATIONNUM){
+			writabledb.execSQL("INSERT INTO recentlystation VALUES(null,?, ?, ?, ?, ?,?)", 
+					new Object[]{station.station_thr_code,station.station_name_ch,station.station_code,station.station_name_pingyin,station.station_pingyin_shou,new Date().getTime()});  
+		}else{
+			ContentValues val=new ContentValues();
+			Date d = new Date();
+			long i=d.getTime();
+			val.put("time", i);
+//			station_thr_code VARCHAR, station_name_ch TEXT, station_code VARCHAR, station_name_pingyin VARCHAR, station_pingyin_shou VARCHAR, time INTEGER
+			val.put("station_thr_code", station.station_thr_code);
+			val.put("station_name_ch", station.station_name_ch);
+			val.put("station_code",station.station_code);
+			val.put("station_name_pingyin", station.station_name_pingyin);
+			val.put("station_pingyin_shou",station.station_pingyin_shou);
+			Cursor c1=readabledb.rawQuery("select MIN(time) as mintime from recentlystation", null);
+			c1.moveToNext();
+			long l=c1.getLong(c1.getColumnIndex("mintime"));
+			writabledb.update("recentlystation", val, "time='"+String.valueOf(l)+"'", null);
+			c1.close();
+		}
+    	
+	}
+	public ArrayList<Station> getRecentlyStation(){
+		ArrayList<Station> stations=new ArrayList<Station>();
+		Cursor cur=readabledb.query("recentlystation", null, null, null, null, null, null);
+		while(cur.moveToNext()){
+//        "(_id INTEGER PRIMARY KEY AUTOINCREMENT, station_thr_code VARCHAR, station_name_ch TEXT, station_code VARCHAR, station_name_pingyin VARCHAR, station_pingyin_shou VARCHAR)");  
+			Station sta=new Station();
+			sta.station_thr_code=cur.getString(cur.getColumnIndex("station_thr_code"));
+			sta.station_name_ch=cur.getString(cur.getColumnIndex("station_name_ch"));
+			sta.station_code=cur.getString(cur.getColumnIndex("station_code"));
+			sta.station_name_pingyin=cur.getString(cur.getColumnIndex("station_name_pingyin"));
+			sta.station_pingyin_shou=cur.getString(cur.getColumnIndex("station_pingyin_shou"));
+			stations.add(sta);
+			}
+		cur.close();
+		return stations;
 	}
 }

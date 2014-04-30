@@ -17,7 +17,8 @@ public class TrainInfoListAdapter extends BaseAdapter {
 		this.inflater = LayoutInflater.from(context);
 		this.trainarray = trainarray;
 	}
-
+	
+	boolean isqueried=false; //是否查询了，如果查询到的结果为空，提示查询失败，点击刷新按钮时 需要考虑重置问题。
 	LayoutInflater inflater;
 	private ArrayList<TrainInfoHoder> trainarray=new ArrayList<TrainInfoHoder>();
 
@@ -50,7 +51,11 @@ public class TrainInfoListAdapter extends BaseAdapter {
 		TextView textview;
 		if(trainarray==null){
 			textview=new TextView(parent.getContext());
-			textview.setText("查询中。。。");
+			if(isqueried==true){
+				textview.setText("无车次信息");
+			}else{
+				textview.setText("查询中。。。");
+			}
 			return textview;
 		}else{
 			View view=inflater.inflate(R.layout.train_info_itemview, null);
@@ -68,6 +73,7 @@ public class TrainInfoListAdapter extends BaseAdapter {
 
 	public void setTrainarray(ArrayList<TrainInfoHoder> trainarray) {
 		this.trainarray = trainarray; 
+		isqueried=true;
 	}
 
 }
