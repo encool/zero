@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.zero1.Station;
 import com.example.zero1.Utility;
@@ -99,10 +100,24 @@ public class DBmanager {
 		c.moveToNext();
 		num=c.getInt(c.getColumnIndex("num"));
 		c.close();
-		if(num<StationDBOpenHelper.RECENTSTATIONNUM){
+		boolean b=isStationIncluded(station,"recentlystation");
+		if(num<StationDBOpenHelper.RECENTSTATIONNUM&&!b){ //数量不够且没有重复时，直接插入
 			writabledb.execSQL("INSERT INTO recentlystation VALUES(null,?, ?, ?, ?, ?,?)", 
-					new Object[]{station.station_thr_code,station.station_name_ch,station.station_code,station.station_name_pingyin,station.station_pingyin_shou,new Date().getTime()});  
-		}else{
+					new Object[]{
+					station.station_thr_code,
+					station.station_name_ch,
+					station.station_code,
+					station.station_name_pingyin,
+					station.station_pingyin_shou,
+					new Date().getTime()});  
+		}else if(b){//重复了，更新,仔细想想就发现这里不用考虑数量是否超过了
+			ContentValues val=new ContentValues();
+			Date d = new Date();
+			long i=d.getTime();
+			val.put("time", i);
+			writabledb.update("recentlystation", val, "station_code='"+station.station_code+"'", null);
+
+		}else{//其他情况 更新时间最小值
 			ContentValues val=new ContentValues();
 			Date d = new Date();
 			long i=d.getTime();
@@ -123,9 +138,10 @@ public class DBmanager {
 	}
 	public ArrayList<Station> getRecentlyStation(){
 		ArrayList<Station> stations=new ArrayList<Station>();
-		Cursor cur=readabledb.query("recentlystation", null, null, null, null, null, null);
-		while(cur.moveToNext()){
-//        "(_id INTEGER PRIMARY KEY AUTOINCREMENT, station_thr_code VARCHAR, station_name_ch TEXT, station_code VARCHAR, station_name_pingyin VARCHAR, station_pingyin_shou VARCHAR)");  
+		try{
+			Cursor cur=readabledb.query("recentlystation", null, null, null, null, null, "time");
+			//orderby 次序不是想要的次序 需要反转
+			cur.moveToLast();
 			Station sta=new Station();
 			sta.station_thr_code=cur.getString(cur.getColumnIndex("station_thr_code"));
 			sta.station_name_ch=cur.getString(cur.getColumnIndex("station_name_ch"));
@@ -133,8 +149,34 @@ public class DBmanager {
 			sta.station_name_pingyin=cur.getString(cur.getColumnIndex("station_name_pingyin"));
 			sta.station_pingyin_shou=cur.getString(cur.getColumnIndex("station_pingyin_shou"));
 			stations.add(sta);
-			}
-		cur.close();
+			while(cur.moveToPrevious()){
+//	        "(_id INTEGER PRIMARY KEY AUTOINCREMENT, station_thr_code VARCHAR, station_name_ch TEXT, station_code VARCHAR, station_name_pingyin VARCHAR, station_pingyin_shou VARCHAR)");  
+				sta=new Station();
+				sta.station_thr_code=cur.getString(cur.getColumnIndex("station_thr_code"));
+				sta.station_name_ch=cur.getString(cur.getColumnIndex("station_name_ch"));
+				sta.station_code=cur.getString(cur.getColumnIndex("station_code"));
+				sta.station_name_pingyin=cur.getString(cur.getColumnIndex("station_name_pingyin"));
+				sta.station_pingyin_shou=cur.getString(cur.getColumnIndex("station_pingyin_shou"));
+				stations.add(sta);
+				}
+			cur.close();
+		}catch(Exception e){
+			Log.i("fuck","getRecentltyStation ERR");
+		}
 		return stations;
+	}
+	public boolean isStationIncluded(Station station,String tablename){
+		Cursor c=readabledb.rawQuery(
+				"select * from "+tablename+" where station_code='"+station.station_code+"'", null);
+		boolean b=c.getCount()>0;
+		c.close();
+		return b;
+	}
+	public ArrayList<Station> getHotStaions(){
+		ArrayList<Station> sta=new ArrayList<Station>();
+		sta=this.queryStationFromdb(1, "广州");
+		sta.addAll(this.queryStationFromdb(1, "上海"));
+		sta.addAll(this.queryStationFromdb(1, "深圳"));
+		return sta;
 	}
 }

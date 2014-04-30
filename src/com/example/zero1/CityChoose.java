@@ -38,7 +38,7 @@ public class CityChoose extends Activity implements TextWatcher{
 		setContentView(R.layout.city_choose_main);
 		super.onCreate(savedInstanceState);
 		dbmanager=new DBmanager(this);
-		hotstation=dbmanager.queryStationFromdb(1,"gz");
+		hotstation=dbmanager.getHotStaions();
 		recentstation=dbmanager.getRecentlyStation();
 		hotcityadpter =new CityAdapter(hotstation,this);
 		recentcityadpter =new CityAdapter(recentstation,this);
