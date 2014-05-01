@@ -2,13 +2,12 @@ package com.example.zero1;
 
 import java.util.ArrayList;
 
-import android.os.AsyncTask;
-import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 public class TrainsInfoActivity extends Activity {
@@ -22,6 +21,7 @@ public class TrainsInfoActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_trains_info);
 		actionbar=getActionBar();
+		
 		//…Ë÷√adapter
 		ListView listview=(ListView) findViewById(R.id.trainlist);
 		listviewadapter=new TrainInfoListAdapter(this,arraylist); 
@@ -49,7 +49,7 @@ public class TrainsInfoActivity extends Activity {
 		protected ArrayList<TrainInfoHoder> doInBackground(TicketClient... params) {
 			// TODO Auto-generated method stub
 
-			String s=params[0].queryTrainInfo(AppActivity.tc.queryurlformat,bundle.getString("date"),bundle.getString("from_station"),bundle.getString("to_station"), "ADULT");
+			String s=params[0].queryTrainInfo(TicketClient.queryurlformat,bundle.getString("date"),bundle.getString("from_station"),bundle.getString("to_station"), "ADULT");
 			return Utility.ParseJsonToArray(s);
 			
 		}

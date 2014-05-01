@@ -2,20 +2,19 @@ package com.example.zero1;
 
 import java.util.ArrayList;
 
-import com.example.zero1.db.DBmanager;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
+
+import com.example.zero1.db.DBmanager;
 
 public class CityChoose extends Activity implements TextWatcher{
 	final static int QUERY_RESULT_CODE=1;
