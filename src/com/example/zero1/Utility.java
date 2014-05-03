@@ -74,8 +74,8 @@ public class Utility {
 			if(status.equals(new String("true"))){
 				for(int i=0;i<data.length();i++){
 					TrainInfoHoder infohoder=new TrainInfoHoder();
-					infohoder.secretStr=data.getString(1); 
-					JSONObject object=data.getJSONObject(0);
+					JSONObject object=data.getJSONObject(i);
+					infohoder.secretStr=object.getString("secretStr"); 
 					JSONObject jsonob=object.getJSONObject("queryLeftNewDTO");
 					infohoder.arrive_time=jsonob.getString("arrive_time");
 					infohoder.end_starion_code=jsonob.getString("end_station_telecode");

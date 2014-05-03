@@ -84,7 +84,7 @@
 			        android:layout_height="wrap_content"
 			        android:paddingBottom="@dimen/text_half_gap"
 			        android:textColor="@color/font_color_light"
-			        android:text="始发站" />
+			        android:text="出发站" />
 			
 			    <TextView
 			        android:id="@+id/leftstation"
@@ -93,7 +93,7 @@
 			        android:layout_gravity="center_horizontal"
 			        android:gravity="center_horizontal"
 			        android:paddingTop="@dimen/text_half_gap"
-			        android:text="一个车站"
+			        android:text="点击选择"
 			        android:textSize="@dimen/text_station_size" />
 			
 			</LinearLayout>
@@ -122,7 +122,7 @@
 			        android:layout_height="wrap_content"
 			        android:paddingBottom="@dimen/text_half_gap"
 			        android:textColor="@color/font_color_light"
-			        android:text="终点站" />
+			        android:text="到达站" />
 			
 			    <TextView
 			        android:id="@+id/rightstation"
@@ -130,7 +130,7 @@
 			        android:layout_height="wrap_content"
 			        android:gravity="center_horizontal"
 			        android:paddingTop="@dimen/text_half_gap"
-			        android:text="一个车站"
+			        android:text="点击选择"
 			        android:textSize="@dimen/text_station_size" />
 			
 			</LinearLayout>

@@ -16,4 +16,9 @@
 	<dimen name="table_row1_margin">6dp</dimen>
 	<dimen name="margin_bet_row">1dp</dimen>
 	<dimen name="common_gap">8dp</dimen>
+	<dimen name="trainitemstationtextsize">18dp</dimen>
+	<dimen name="traincodetextsize">22dp</dimen>
+	<dimen name="seattextsize">12dp</dimen>
+	<dimen name="timetextsize">10dp</dimen>
+	<dimen name="trainitemmargin">12dp</dimen>
 </resources>

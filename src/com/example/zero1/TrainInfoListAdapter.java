@@ -18,14 +18,14 @@ public class TrainInfoListAdapter extends BaseAdapter {
 		this.trainarray = trainarray;
 	}
 	
-	boolean isqueried=false; //是否查询了，如果查询到的结果为空，提示查询失败，点击刷新按钮时 需要考虑重置问题。
+	boolean isupdated=false; //是否查询了，如果查询到的结果为空，提示查询失败，点击刷新按钮时 需要考虑重置问题。
 	LayoutInflater inflater;
 	private ArrayList<TrainInfoHoder> trainarray=new ArrayList<TrainInfoHoder>();
 
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		if(trainarray==null){
+		if(trainarray==null||trainarray.size()==0){
 			return 1;
 		}else{
 			return trainarray.size();
@@ -51,8 +51,16 @@ public class TrainInfoListAdapter extends BaseAdapter {
 		TextView textview;
 		if(trainarray==null){
 			textview=new TextView(parent.getContext());
-			if(isqueried==true){
-				textview.setText("无车次信息");
+			if(isupdated==true){
+				textview.setText("无车次信息或网络有问题");
+			}else{
+				textview.setText("查询中。。。");
+			}
+			return textview;
+		}else if(trainarray.size()==0){
+			textview=new TextView(parent.getContext());
+			if(isupdated==true){
+				textview.setText("无当日车次信息");
 			}else{
 				textview.setText("查询中。。。");
 			}
@@ -61,7 +69,7 @@ public class TrainInfoListAdapter extends BaseAdapter {
 			View view=inflater.inflate(R.layout.train_info_itemview, null);
 			TrainInfoHoder hoder=trainarray.get(position);
 			TextView traincode=(TextView) view.findViewById(R.id.train_code);
-			traincode.setText(hoder.from_station_code);
+			traincode.setText(hoder.station_train_code);
 			return view;
 		}
 		
@@ -73,7 +81,7 @@ public class TrainInfoListAdapter extends BaseAdapter {
 
 	public void setTrainarray(ArrayList<TrainInfoHoder> trainarray) {
 		this.trainarray = trainarray; 
-		isqueried=true;
+		isupdated=true;
 	}
 
 }

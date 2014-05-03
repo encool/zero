@@ -23,7 +23,6 @@ public class AppActivity extends android.support.v7.app.ActionBarActivity {
 	ViewPager viewpager;
     private LayoutInflater inflater;
     static TicketClient tc;
-    com.example.zero1.db.DBmanager dbmanager;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
