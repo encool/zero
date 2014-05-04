@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class TrainInfoListAdapter extends BaseAdapter {
@@ -70,6 +71,26 @@ public class TrainInfoListAdapter extends BaseAdapter {
 			TrainInfoHoder hoder=trainarray.get(position);
 			TextView traincode=(TextView) view.findViewById(R.id.train_code);
 			traincode.setText(hoder.station_train_code);
+			
+			((TextView)view.findViewById(R.id.itemview_from_station)).setText(hoder.from_station_name_ch);
+			((TextView)view.findViewById(R.id.itemview_to_station)).setText(hoder.to_station_name_ch);
+			
+			((TextView)view.findViewById(R.id.lishi)).setText(hoder.lishi);
+			((TextView)view.findViewById(R.id.start_time)).setText(hoder.start_time);
+			((TextView)view.findViewById(R.id.arrive_time)).setText(hoder.arrive_time);
+			
+			if(hoder.station_train_code.contains("G")){
+				((TextView)view.findViewById(R.id.seattype_1)).setText("商务座:"+hoder.swz_num);
+				((TextView)view.findViewById(R.id.seattype_2)).setText("一等座:"+hoder.zy_num);
+				((TextView)view.findViewById(R.id.seattype_3)).setText("二等座:"+hoder.ze_num);
+//				((LinearLayout)view).removeView(view.findViewById(R.id.seattype_4));
+				((TextView)view.findViewById(R.id.seattype_4)).setVisibility(View.INVISIBLE);
+			}else{
+				((TextView)view.findViewById(R.id.seattype_1)).setText("软卧:"+hoder.rw_num);
+				((TextView)view.findViewById(R.id.seattype_2)).setText("硬卧:"+hoder.yw_num);
+				((TextView)view.findViewById(R.id.seattype_4)).setText("无座:"+hoder.wz_num);
+				((TextView)view.findViewById(R.id.seattype_3)).setText("硬座:"+hoder.yz_num);
+			}
 			return view;
 		}
 		

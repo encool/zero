@@ -20,5 +20,5 @@
 	<dimen name="traincodetextsize">22dp</dimen>
 	<dimen name="seattextsize">12dp</dimen>
 	<dimen name="timetextsize">10dp</dimen>
-	<dimen name="trainitemmargin">12dp</dimen>
+	<dimen name="trainitemmargin">20dp</dimen>
 </resources>

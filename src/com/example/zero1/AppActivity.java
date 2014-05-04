@@ -34,7 +34,7 @@ public class AppActivity extends android.support.v7.app.ActionBarActivity {
 		tc=new TicketClient(getApplicationContext());
 		new TicketClientInitTask().execute(tc);
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

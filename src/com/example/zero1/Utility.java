@@ -81,14 +81,23 @@ public class Utility {
 					infohoder.end_starion_code=jsonob.getString("end_station_telecode");
 					infohoder.end_station_name_ch=jsonob.getString("end_station_name");
 					infohoder.from_station_code=jsonob.getString("from_station_telecode");
+					infohoder.from_station_name_ch=jsonob.getString("from_station_name");
 					infohoder.lishi=jsonob.getString("lishi");
 					infohoder.rw_num=jsonob.getString("rw_num");
+					infohoder.yw_num=jsonob.getString("yw_num");
+					infohoder.yz_num=jsonob.getString("yz_num");
+					infohoder.wz_num=jsonob.getString("wz_num");
+					infohoder.zy_num=jsonob.getString("zy_num");
+					infohoder.ze_num=jsonob.getString("ze_num");
+					infohoder.swz_num=jsonob.getString("wz_num");
+					
 					infohoder.start_station_code=jsonob.getString("start_station_telecode");
 					infohoder.start_station_name_ch=jsonob.getString("start_station_name");
 					infohoder.start_time=jsonob.getString("start_time");
 					infohoder.station_train_code=jsonob.getString("station_train_code");
 					infohoder.start_station_name_ch=jsonob.getString("start_station_name");
 					infohoder.to_station_code=jsonob.getString("to_station_telecode");
+					infohoder.to_station_name_ch=jsonob.getString("to_station_name");
 					array.add(infohoder);
 					
 				}

@@ -146,11 +146,6 @@ public class QueryFragment extends Fragment {
 			rightstationview.setText(rightinitialstaion.getStation_name_ch());
 			rightstationview.setTag(rightinitialstaion.getStation_code());
 		}
-		leftstationview.setText(leftinitialstation.getStation_name_ch());
-		leftstationview.setTag(leftinitialstation.getStation_code());
-
-		rightstationview.setText(rightinitialstaion.getStation_name_ch());
-		rightstationview.setTag(rightinitialstaion.getStation_code());
 		//根据当前时间初始话这两个view
 		dateview=(TextView) activity.findViewById(R.id.date);
 		date=new Date();

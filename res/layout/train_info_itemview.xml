@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center"
     android:orientation="vertical"
     android:useDefaultMargins="true" >
 
@@ -14,8 +15,7 @@
             android:id="@+id/train_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/trainitemmargin"
-            android:minWidth="50dp"
+            android:minWidth="70dp"
             android:text="K9052"
             android:textSize="@dimen/traincodetextsize" />
 
@@ -29,7 +29,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
-                android:layout_marginLeft="@dimen/trainitemmargin"
+                android:gravity="center_horizontal"
+                android:minWidth="70dp"
                 android:text="娄底"
                 android:textSize="@dimen/trainitemstationtextsize" />
 
@@ -37,11 +38,12 @@
                 android:id="@+id/start_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/trainitemmargin"
+                android:layout_gravity="top|center_horizontal"
                 android:layout_marginTop="0dp"
                 android:gravity="fill"
                 android:text="08:11"
                 android:textSize="@dimen/timetextsize" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -51,20 +53,22 @@
 
             <ImageView
                 android:id="@+id/imageView1"
-                android:layout_width="63dp"
+                android:layout_width="match_parent"
                 android:layout_height="18dp"
+                android:layout_gravity="bottom|center_horizontal"
                 android:layout_marginBottom="0dp"
-                android:layout_marginLeft="@dimen/trainitemmargin"
                 android:src="@drawable/arrow_right_thin_easyicon_net_32" />
 
             <TextView
                 android:id="@+id/lishi"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/trainitemmargin"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="0dp"
+                android:gravity="center_horizontal"
                 android:text="8小时43分"
                 android:textSize="@dimen/timetextsize" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -77,7 +81,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
-                android:layout_marginLeft="@dimen/trainitemmargin"
+                android:gravity="center_horizontal"
+                android:minWidth="70dp"
                 android:text="深圳"
                 android:textSize="@dimen/trainitemstationtextsize" />
 
@@ -85,10 +90,11 @@
                 android:id="@+id/arrive_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/trainitemmargin"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="0dp"
                 android:text="05:11"
                 android:textSize="@dimen/timetextsize" />
+
         </LinearLayout>
 
         <ImageView
