@@ -6,8 +6,12 @@ public class User {
 		this.name = name;
 		this.pwd = pwd;
 	}
+	public User() {
+		// TODO Auto-generated constructor stub
+		isauthed=false;
+	}
 	boolean isauthed;
-	String certificate;
+	String identity;
 	String name;
 	String pwd;
 	public boolean isIsauthed() {
@@ -16,11 +20,11 @@ public class User {
 	public void setIsauthed(boolean isauthed) {
 		this.isauthed = isauthed;
 	}
-	public String getCertificate() {
-		return certificate;
+	public String getIdentity() {
+		return identity;
 	}
-	public void setCertificate(String certificate) {
-		this.certificate = certificate;
+	public void setIdentity(String certificate) {
+		this.identity = certificate;
 	}
 	public String getName() {
 		return name;

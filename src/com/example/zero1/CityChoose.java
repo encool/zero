@@ -117,7 +117,7 @@ public class CityChoose extends Activity implements TextWatcher{
 		recentlyview.setAdapter(recentcityadpter);
 		recentlyview.setNumColumns(3);
 		queryresultgdview.setVisibility(View.INVISIBLE);
-		serchtext=(EditText) findViewById(R.id.editText1);
+		serchtext=(EditText) findViewById(R.id.username);
 		serchtext.addTextChangedListener(this);
 	}
 	@Override

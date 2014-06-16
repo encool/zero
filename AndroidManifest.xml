@@ -7,10 +7,11 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="19" />
-    <instrumentation 
+
+    <instrumentation
         android:name="android.test.InstrumentationTestRunner"
-      	android:targetPackage="com.example.zero1"
-   	 	android:label="Test for application!"/>
+        android:label="Test for application!"
+        android:targetPackage="com.example.zero1" />
 
     <uses-permission android:name="android.permission.INTERNET" >
     </uses-permission>
@@ -19,14 +20,13 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/Theme.AppCompat.Light"
-         >
+        android:theme="@style/Theme.AppCompat.Light" >
 
         <!-- 如何根据level选择主题？？ -->
         <activity
             android:name="com.example.zero1.AppActivity"
-            android:label="@string/app_name" 
-            android:uiOptions="splitActionBarWhenNarrow">
+            android:label="@string/app_name"
+            android:uiOptions="splitActionBarWhenNarrow" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,7 +49,13 @@
             android:name="com.example.zero1.TrainsInfoActivity"
             android:label="@string/title_activity_trains_info" >
         </activity>
-        <uses-library android:name="android.test.runner"/>
+
+        <uses-library android:name="android.test.runner" />
+
+        <activity
+            android:name="com.example.zero1.LoginActivity"
+            android:label="@string/title_activity_login" >
+        </activity>
     </application>
 
 </manifest>

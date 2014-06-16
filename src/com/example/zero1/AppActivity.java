@@ -1,6 +1,10 @@
 package com.example.zero1;
 
 //import android.app.ActionBar;
+import com.example.zero1.account.AccountManager;
+import com.example.zero1.account.User;
+
+import android.accounts.Account;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Intent;
@@ -14,6 +18,7 @@ import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 //import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
@@ -23,6 +28,7 @@ public class AppActivity extends android.support.v7.app.ActionBarActivity {
 	ViewPager viewpager;
     private LayoutInflater inflater;
     static TicketClient tc;
+    static AccountManager am=new AccountManager();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -83,4 +89,25 @@ public class AppActivity extends android.support.v7.app.ActionBarActivity {
 			return null;
 		}		
 	}
+	//Handling clicks on action items
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle presses on the action bar items
+	    switch (item.getItemId()) {
+	        case R.id.inf_user:
+	        	openUserInfo();
+	            return true;
+	        case R.id.action_add:
+	   
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	void openUserInfo(){
+		if(!am.hasLoginedUser()){
+			startActivity(new Intent(this,LoginActivity.class));
+		}
+		
+	}
+
 }

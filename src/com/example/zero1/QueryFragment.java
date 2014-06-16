@@ -63,6 +63,7 @@ public class QueryFragment extends Fragment {
 		View rootview=inflater.inflate(R.layout.fragment_query_main, container,false);	
 		return rootview;
 	}
+	//ÉèÖÃ¸÷ÖÖ¼àÌı¿©£¡
 	void setListener(){
 		LinearLayout from_station=(LinearLayout) activity.findViewById(R.id.itemview_from_station);
 		from_station.setOnClickListener(new OnClickListener(){
