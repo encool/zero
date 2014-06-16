@@ -14,6 +14,7 @@ public class User {
 	String identity;
 	String name;
 	String pwd;
+	String passcode;
 	public boolean isIsauthed() {
 		return isauthed;
 	}
@@ -37,6 +38,12 @@ public class User {
 	}
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
+	}
+	public String getPasscode() {
+		return passcode;
+	}
+	public void setPasscode(String passcode) {
+		this.passcode = passcode;
 	}
 	
 }

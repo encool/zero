@@ -17,6 +17,7 @@ import android.widget.ImageView;
 public class LoginActivity extends Activity {
 	EditText usernameview;
 	EditText passwordview;
+	EditText passcodeview;
 	ImageView imageview;
 	User user=new User();
 	@Override
@@ -45,8 +46,10 @@ public class LoginActivity extends Activity {
 				// TODO Auto-generated method stub
 				String username=usernameview.getText().toString();
 				String password=passwordview.getText().toString();
+				String passcode=passcodeview.get
 				user.setName(username);
 				user.setPwd(password);
+				user.setPasscode(passcode)
 				new LoginTask().execute(user);
 			}});
 	}
