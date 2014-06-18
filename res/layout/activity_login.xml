@@ -28,7 +28,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="liqiao100@yahoo.cn" />
+        android:text="liqiao100@yahoo.cn" />
 
     <TextView
         android:id="@+id/textView2"
@@ -47,7 +47,8 @@
         android:layout_marginRight="14dp"
         android:ems="10"
         android:hint="815720q"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:text="815720q" />
 
     <Button
         android:id="@+id/login"
@@ -58,35 +59,34 @@
         android:text="login" />
 
     <TextView
-        android:id="@+id/passcode"
+        android:id="@+id/passcodeaa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/passcodeimage"
         android:layout_alignLeft="@+id/textView3"
         android:text="验证码" />
 
-    <ImageView
-        android:id="@+id/passcodeimage"
-        android:layout_width="70dp"
-        android:layout_height="35dp"
-        android:layout_below="@+id/password"
-        android:layout_marginLeft="2dp"
-        android:layout_toRightOf="@+id/login"
-        android:minHeight="35dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_action_back" />
-
    <EditText
        android:id="@+id/passcode"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_alignLeft="@+id/login"
-       android:layout_alignRight="@+id/login"
        android:layout_alignTop="@+id/passcodeimage"
+       android:layout_toLeftOf="@+id/passcodeimage"
        android:ems="10"
        android:maxLength="4"
        android:maxLines="1" >
 
     </EditText>
+
+   <ImageView
+       android:id="@+id/passcodeimage"
+       android:layout_width="70dp"
+       android:layout_height="35dp"
+       android:layout_alignParentRight="true"
+       android:layout_below="@+id/password"
+       android:minHeight="35dp"
+       android:scaleType="fitXY"
+       android:src="@drawable/ic_action_back" />
 
 </RelativeLayout>

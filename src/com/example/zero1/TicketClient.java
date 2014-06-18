@@ -166,6 +166,8 @@ public  class TicketClient {
 			con=(HttpsURLConnection) url.openConnection();
 			con.setSSLSocketFactory(sslcontex.getSocketFactory());
 			con.setDoOutput(true);
+			Log.i("fuck", user.getCookie());
+			con.setRequestProperty("Cookie", user.getCookie());
 //			con.setFixedLengthStreamingMode(poststring.length());
 			OutputStream out = new BufferedOutputStream(con.getOutputStream());
 			out.write(poststring.getBytes());
@@ -197,6 +199,12 @@ public  class TicketClient {
 			Map map=con.getHeaderFields();
 			List list=(List) map.get("Set-Cookie");
 			user.setIdentity(list.toString());
+			String s=list.toString();
+			String ss=(String) s.subSequence(s.indexOf("JSESSIONID="),s.indexOf(";"));
+			String ss2=(String) s.subSequence(s.indexOf("BIGipServerotn"),s.lastIndexOf(";"));
+			String cookie=ss+";"+ss2;
+			user.setCookie(cookie);
+			Log.i("fuck", ss);
 			bitmap = BitmapFactory.decodeStream(reader); 
 			reader.close(); 
 			return bitmap; 

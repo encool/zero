@@ -12,6 +12,7 @@ public class User {
 	}
 	boolean isauthed;
 	String identity;
+	String cookie;
 	String name;
 	String pwd;
 	String passcode;
@@ -44,6 +45,12 @@ public class User {
 	}
 	public void setPasscode(String passcode) {
 		this.passcode = passcode;
+	}
+	public String getCookie() {
+		return cookie;
+	}
+	public void setCookie(String cookie) {
+		this.cookie = cookie;
 	}
 	
 }

@@ -26,6 +26,7 @@ public class LoginActivity extends Activity {
 		setContentView(R.layout.activity_login);
 		usernameview=(EditText) findViewById(R.id.username);
 		passwordview=(EditText) findViewById(R.id.password);
+		passcodeview=(EditText) findViewById(R.id.passcode);
 		imageview=(ImageView) findViewById(R.id.passcodeimage);
 		setListener();
 		new getLoginPassCodeTask().execute(user);
@@ -46,10 +47,10 @@ public class LoginActivity extends Activity {
 				// TODO Auto-generated method stub
 				String username=usernameview.getText().toString();
 				String password=passwordview.getText().toString();
-				String passcode=passcodeview.get
+				String passcode=passcodeview.getText().toString();
 				user.setName(username);
 				user.setPwd(password);
-				user.setPasscode(passcode)
+				user.setPasscode(passcode);
 				new LoginTask().execute(user);
 			}});
 	}
@@ -59,7 +60,7 @@ public class LoginActivity extends Activity {
 		protected String doInBackground(User... params) {
 			// TODO Auto-generated method stub
 			Log.i("f", "enter login");
-			AppActivity.tc.loginRequst(params[0], "asdd");
+			AppActivity.tc.loginRequst(params[0], params[0].getPasscode());
 			
 			return null;
 		}		
