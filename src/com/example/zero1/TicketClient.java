@@ -41,7 +41,8 @@ public  class TicketClient {
 	final static String queryurl="https://kyfw.12306.cn/otn/leftTicket/query?";
 	final static String loginurl="https://kyfw.12306.cn/otn/login/loginAysnSuggest";
 	final static String passcodelogin="https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&rand=sjrand";
-
+	final static String logininiturl="https://kyfw.12306.cn/otn/login/init";
+	
 	static List<Station> stations;
 	AndroidHttpClient client=AndroidHttpClient.newInstance(null, null);
 	BasicHttpParams param=new BasicHttpParams();
@@ -167,7 +168,20 @@ public  class TicketClient {
 			con.setSSLSocketFactory(sslcontex.getSocketFactory());
 			con.setDoOutput(true);
 			Log.i("fuck", user.getCookie());
+			
 			con.setRequestProperty("Cookie", user.getCookie());
+//			con.setRequestProperty("Cookie", "_jc_save_fromStation=%u8861%u9633%2CHYQ; _jc_save_toStation=%u6E58%u6F6D%2CXTQ; _jc_save_fromDate=2014-03-15; _jc_save_toDate=2014-03-15; _jc_save_wfdc_flag=dc");
+			con.setRequestProperty("Connection", "keep-alive");
+			con.setRequestProperty("Accept", "*/*");
+			con.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36");
+			con.setRequestProperty("X-Requested-With", "XMLHttpRequest");
+			con.setRequestProperty("Host", "kyfw.12306.cn");
+			con.setRequestProperty("Accept-Encoding", "gzip,deflate,sdch");
+			con.setRequestProperty("Accept-Language", "zh-CN,zh;q=0.8,en;q=0.6,zh-TW;q=0.4");
+			con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+			
+			Map map=con.getRequestProperties();
+			
 //			con.setFixedLengthStreamingMode(poststring.length());
 			OutputStream out = new BufferedOutputStream(con.getOutputStream());
 			out.write(poststring.getBytes());
@@ -185,6 +199,19 @@ public  class TicketClient {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	void loginInit(User user){
+		HttpsURLConnection con;
+		URL url;
+		try{
+			url=new URL(logininiturl); 
+			con=(HttpsURLConnection) url.openConnection();
+			con.setSSLSocketFactory(sslcontex.getSocketFactory());	
+			Map map=con.getHeaderFields();
+			List list=(List) map.get("Set-Cookie");
+		}catch (Exception e){
+			
+		}
 	}
 	Bitmap getPassCode(User user){
 		Log.i("f", "entergetpasscode");
