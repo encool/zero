@@ -9,16 +9,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".LoginActivity" >
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/username"
-        android:layout_centerHorizontal="false"
-        android:layout_marginTop="17dp"
-        android:text="密码" />
-
     <EditText
         android:id="@+id/username"
         android:layout_width="wrap_content"
@@ -29,14 +19,6 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:text="liqiao100@yahoo.cn" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/username"
-        android:layout_toLeftOf="@+id/username"
-        android:text="用户名" />
 
     <EditText
         android:id="@+id/password"
@@ -88,5 +70,34 @@
        android:minHeight="35dp"
        android:scaleType="fitXY"
        android:src="@drawable/ic_action_back" />
+
+   <TextView
+       android:id="@+id/resulttext"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignBaseline="@+id/login"
+       android:layout_alignBottom="@+id/login"
+       android:layout_toRightOf="@+id/login"
+       android:textAppearance="?android:attr/textAppearanceLarge" />
+
+   <TextView
+       android:id="@+id/textView2"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignBaseline="@+id/username"
+       android:layout_alignBottom="@+id/username"
+       android:layout_toLeftOf="@+id/username"
+       android:text="用户名"
+       android:textSize="17dp" />
+
+   <TextView
+       android:id="@+id/textView3"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignBaseline="@+id/password"
+       android:layout_alignBottom="@+id/password"
+       android:layout_alignLeft="@+id/textView2"
+       android:text="密码"
+       android:textSize="17dp" />
 
 </RelativeLayout>

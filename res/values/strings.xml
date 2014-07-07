@@ -15,5 +15,6 @@
     <string name="title_activity_init_activity_main">MainActivity</string>
     <string name="title_activity_trains_info">TrainsInfo</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_profile">用户信息</string>
 
 </resources>

@@ -12,7 +12,7 @@ public class TrainInfoHoder {
 	String end_station_name_ch;
 	String start_time;
 	String arrive_time;
-	String lishi;
+	String lishi; 
 	//需要搞清楚字段与坐席对应关系，修改
 	String yz_num;//yingzuo?
 	String rw_num;//ruanwo?
@@ -23,5 +23,6 @@ public class TrainInfoHoder {
 	String zy_num;//yidengzuo?
 	String swz_num;//商务座？
 	String secretStr;
-	  
+	
+	
 }

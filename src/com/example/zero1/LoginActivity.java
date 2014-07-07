@@ -1,6 +1,7 @@
 package com.example.zero1;
 
 import com.example.zero1.account.User;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
@@ -13,11 +14,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class LoginActivity extends Activity {
 	EditText usernameview;
 	EditText passwordview;
 	EditText passcodeview;
+	TextView resultview;
 	ImageView imageview;
 	User user=new User();
 	@Override
@@ -28,8 +31,10 @@ public class LoginActivity extends Activity {
 		passwordview=(EditText) findViewById(R.id.password);
 		passcodeview=(EditText) findViewById(R.id.passcode);
 		imageview=(ImageView) findViewById(R.id.passcodeimage);
+		resultview=(TextView) findViewById(R.id.resulttext);
 		setListener();
 		new getLoginPassCodeTask().execute(user);
+//		new LoginInitTask().execute(user);
 	}
 
 	@Override
@@ -54,16 +59,19 @@ public class LoginActivity extends Activity {
 				new LoginTask().execute(user);
 			}});
 	}
-	private class LoginTask extends AsyncTask<User, Void,String > {
+	private class LoginTask extends AsyncTask<User, Void, Boolean> { 
 
 		@Override
-		protected String doInBackground(User... params) {
+		protected Boolean doInBackground(User... params) {
 			// TODO Auto-generated method stub
 			Log.i("f", "enter login");
-			AppActivity.tc.loginRequst(params[0], params[0].getPasscode());
-			
-			return null;
-		}		
+			return AppActivity.tc.loginRequst(params[0], params[0].getPasscode());
+
+		}	
+	     protected void onPostExecute(boolean result) {
+	    	 if(result==false)
+	    		 resultview.setText("µÇÂ½Ê§°Ü");
+	     }
 	}
 	private class getLoginPassCodeTask extends AsyncTask<User, Void,Bitmap > {
 
@@ -82,5 +90,16 @@ public class LoginActivity extends Activity {
 	     }
 
 	}
+//	private class LoginInitTask extends AsyncTask<User, Void,String > {
+//
+//		@Override
+//		protected String doInBackground(User... params) {
+//			// TODO Auto-generated method stub
+//			Log.i("f", "enter login");
+//			AppActivity.tc.loginInit(params[0]);
+//			
+//			return null;
+//		}		
+//	}
 	
 }

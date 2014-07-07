@@ -157,7 +157,7 @@ public  class TicketClient {
 		return false;
 	}
 	
-	public String loginRequst(User user,String random){
+	public boolean loginRequst(User user,String random){
 		String poststring="loginUserDTO.user_name="+user.getName()+"&userDTO.password="+user.getPwd()+"&randCode="+random;
 		Log.i("f", poststring);
 		HttpsURLConnection con;
@@ -169,22 +169,25 @@ public  class TicketClient {
 			con.setDoOutput(true);
 			Log.i("fuck", user.getCookie());
 			
-			con.setRequestProperty("Cookie", user.getCookie());
-//			con.setRequestProperty("Cookie", "_jc_save_fromStation=%u8861%u9633%2CHYQ; _jc_save_toStation=%u6E58%u6F6D%2CXTQ; _jc_save_fromDate=2014-03-15; _jc_save_toDate=2014-03-15; _jc_save_wfdc_flag=dc");
-			con.setRequestProperty("Connection", "keep-alive");
-			con.setRequestProperty("Accept", "*/*");
-			con.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36");
-			con.setRequestProperty("X-Requested-With", "XMLHttpRequest");
-			con.setRequestProperty("Host", "kyfw.12306.cn");
-			con.setRequestProperty("Accept-Encoding", "gzip,deflate,sdch");
-			con.setRequestProperty("Accept-Language", "zh-CN,zh;q=0.8,en;q=0.6,zh-TW;q=0.4");
-			con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-			
+			con.addRequestProperty("Cookie", user.getCookie());
+			con.addRequestProperty("Cookie", "_jc_save_fromStation=%u8861%u9633%2CHYQ; _jc_save_toStation=%u6E58%u6F6D%2CXTQ; _jc_save_fromDate=2014-03-15; _jc_save_toDate=2014-03-15; _jc_save_wfdc_flag=dc");
+			con.addRequestProperty("Connection", "keep-alive");
+			con.addRequestProperty("Accept", "*/*");
+			con.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36");
+			con.addRequestProperty("X-Requested-With", "XMLHttpRequest");
+			con.addRequestProperty("Host", "kyfw.12306.cn");
+			con.addRequestProperty("Accept-Encoding", "gzip,deflate,sdch");
+			con.addRequestProperty("Accept-Language", "zh-CN,zh;q=0.8,en;q=0.6,zh-TW;q=0.4");
+			con.addRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+			con.addRequestProperty("Content-Length", "80");
+			con.setFollowRedirects(true);
+			//con.addRequestProperty(field, newValue);
 			Map map=con.getRequestProperties();
 			
 //			con.setFixedLengthStreamingMode(poststring.length());
 			OutputStream out = new BufferedOutputStream(con.getOutputStream());
 			out.write(poststring.getBytes());
+			out.flush();
 //			String cookie=con.getHeaderField("Cookie");
 			InputStreamReader reader=new InputStreamReader(con.getInputStream());
 			char[] buffer = new char[1024];
@@ -193,26 +196,36 @@ public  class TicketClient {
 				sb.append(buffer);
 			}
 			Log.i("fuck", new String(sb).toString());
-			return new String(sb);
+			String s = new String(sb);
+			String s1 =Utility.ParseLoginJson(s);
+			if(s1=="Y")
+				return true;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return false;
 	}
-	void loginInit(User user){
-		HttpsURLConnection con;
-		URL url;
-		try{
-			url=new URL(logininiturl); 
-			con=(HttpsURLConnection) url.openConnection();
-			con.setSSLSocketFactory(sslcontex.getSocketFactory());	
-			Map map=con.getHeaderFields();
-			List list=(List) map.get("Set-Cookie");
-		}catch (Exception e){
-			
-		}
-	}
+//	void loginInit(User user){
+//		HttpsURLConnection con;
+//		URL url;
+//		try{
+//			url=new URL(logininiturl); 
+//			con=(HttpsURLConnection) url.openConnection();
+//			con.setSSLSocketFactory(sslcontex.getSocketFactory());	
+//			con.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36");
+//			Map map=con.getHeaderFields();
+//			List list=(List) map.get("Set-Cookie");
+//			String s=list.toString();
+//			String ss=(String) s.subSequence(s.indexOf("JSESSIONID="),s.indexOf(";"));
+//			String ss2=(String) s.subSequence(s.indexOf("BIGipServerotn"),s.lastIndexOf(";"));
+//			String cookie=ss+"; "+ss2;
+//			user.setCookie(cookie);
+//			Log.i("fuck", ss);
+//		}catch (Exception e){
+//			
+//		}
+//	}
 	Bitmap getPassCode(User user){
 		Log.i("f", "entergetpasscode");
 		HttpsURLConnection con;
