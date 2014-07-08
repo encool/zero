@@ -198,7 +198,7 @@ public  class TicketClient {
 			Log.i("fuck", new String(sb).toString());
 			String s = new String(sb);
 			String s1 =Utility.ParseLoginJson(s);
-			if(s1=="Y")
+			if(s1.equals("Y"))
 				return true;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -226,7 +226,7 @@ public  class TicketClient {
 //			
 //		}
 //	}
-	Bitmap getPassCode(User user){
+	Bitmap getPassCode(User user,boolean isrefresh){
 		Log.i("f", "entergetpasscode");
 		HttpsURLConnection con;
 		URL url;

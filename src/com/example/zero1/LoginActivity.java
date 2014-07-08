@@ -5,6 +5,7 @@ import com.example.zero1.account.User;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -65,12 +66,18 @@ public class LoginActivity extends Activity {
 		protected Boolean doInBackground(User... params) {
 			// TODO Auto-generated method stub
 			Log.i("f", "enter login");
-			return AppActivity.tc.loginRequst(params[0], params[0].getPasscode());
+			boolean b=AppActivity.tc.loginRequst(params[0], params[0].getPasscode());
+			return b;
 
 		}	
-	     protected void onPostExecute(boolean result) {
-	    	 if(result==false)
-	    		 resultview.setText("µÇÂ½Ê§°Ü");
+	     protected void onPostExecute(Boolean result) {
+	    	 if(result==false){
+	    		  resultview.setText("µÇÂ½Ê§°Ü");
+	    	 }else{
+	    		 startActivity(new Intent(resultview.getContext(),ProfileActivity.class));
+	    	 }
+	    		
+	    	 
 	     }
 	}
 	private class getLoginPassCodeTask extends AsyncTask<User, Void,Bitmap > {

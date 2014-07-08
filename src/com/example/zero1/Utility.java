@@ -122,12 +122,12 @@ public class Utility {
 		try {
 			JSONObject logininfo=(JSONObject) jsonparser.nextValue();
 			JSONObject jsonob=logininfo.getJSONObject("data");
-			String s1 =jsonob.getString("LoginCheck");
+			String s1 =jsonob.getString("loginCheck");
 			return s1;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
+			return "error";
 		}
 	}
 }
