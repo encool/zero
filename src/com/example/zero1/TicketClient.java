@@ -232,22 +232,36 @@ public  class TicketClient {
 		URL url;
 		Bitmap bitmap;
 		try { 
-			url=new URL(passcodelogin); 
-			con=(HttpsURLConnection) url.openConnection();
-			con.setSSLSocketFactory(sslcontex.getSocketFactory());
-			InputStream reader=con.getInputStream();
-			Map map=con.getHeaderFields();
-			List list=(List) map.get("Set-Cookie");
-			user.setIdentity(list.toString());
-			String s=list.toString();
-			String ss=(String) s.subSequence(s.indexOf("JSESSIONID="),s.indexOf(";"));
-			String ss2=(String) s.subSequence(s.indexOf("BIGipServerotn"),s.lastIndexOf(";"));
-			String cookie=ss+";"+ss2;
-			user.setCookie(cookie);
-			Log.i("fuck", ss);
-			bitmap = BitmapFactory.decodeStream(reader); 
-			reader.close(); 
-			return bitmap; 
+			if(isrefresh){
+				double f=Math.random();
+				String passcodeloginref=passcodelogin+String.valueOf(f);
+				url=new URL(passcodeloginref); 
+				con=(HttpsURLConnection) url.openConnection();
+				con.setSSLSocketFactory(sslcontex.getSocketFactory());
+				con.setRequestProperty("Cookie", user.getCookie());
+				InputStream reader=con.getInputStream();
+				bitmap = BitmapFactory.decodeStream(reader); 
+				reader.close(); 
+				return bitmap; 
+			}else{
+				url=new URL(passcodelogin); 
+				con=(HttpsURLConnection) url.openConnection();
+				con.setSSLSocketFactory(sslcontex.getSocketFactory());
+				InputStream reader=con.getInputStream();
+				Map map=con.getHeaderFields();
+				List list=(List) map.get("Set-Cookie");
+				user.setIdentity(list.toString());
+				String s=list.toString();
+				String ss=(String) s.subSequence(s.indexOf("JSESSIONID="),s.indexOf(";"));
+				String ss2=(String) s.subSequence(s.indexOf("BIGipServerotn"),s.lastIndexOf(";"));
+				String cookie=ss+";"+ss2;
+				user.setCookie(cookie);
+				Log.i("fuck", ss);
+				bitmap = BitmapFactory.decodeStream(reader); 
+				reader.close(); 
+				return bitmap; 
+			}
+
 		}catch(Exception e){
 			e.printStackTrace();
 		}

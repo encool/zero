@@ -59,6 +59,15 @@ public class LoginActivity extends Activity {
 				user.setPasscode(passcode);
 				new LoginTask().execute(user);
 			}});
+		imageview.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				new refreshPassCodeTask().execute(user);
+			}
+			
+		});
 	}
 	private class LoginTask extends AsyncTask<User, Void, Boolean> { 
 
@@ -86,7 +95,24 @@ public class LoginActivity extends Activity {
 		protected Bitmap doInBackground(User... params) {
 			// TODO Auto-generated method stub
 			Log.i("f", "enter login");
-			Bitmap bitmap=AppActivity.tc.getPassCode(params[0]);
+			Bitmap bitmap=AppActivity.tc.getPassCode(params[0],false);
+			
+			return bitmap;
+		}
+	     protected void onPostExecute(Bitmap result) {
+//	         showDialog("Downloaded " + result + " bytes");
+	    	
+	    	 imageview.setImageBitmap(result);
+	     }
+
+	}
+	private class refreshPassCodeTask extends AsyncTask<User, Void,Bitmap > {
+
+		@Override
+		protected Bitmap doInBackground(User... params) {
+			// TODO Auto-generated method stub
+			Log.i("f", "enter login");
+			Bitmap bitmap=AppActivity.tc.getPassCode(params[0],true);
 			
 			return bitmap;
 		}
