@@ -42,6 +42,11 @@ public  class TicketClient {
 	final static String loginurl="https://kyfw.12306.cn/otn/login/loginAysnSuggest";
 	final static String passcodelogin="https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&rand=sjrand";
 	final static String logininiturl="https://kyfw.12306.cn/otn/login/init";
+	final static String querynocomplete="https://kyfw.12306.cn/otn/queryOrder/queryMyOrderNoComplete";
+	final static String querymyorder="https://kyfw.12306.cn/otn/queryOrder/queryMyOrder";
+	final static String ORDER_FLAG_TUIPIAO="my_refund";
+	final static String ORDER_FLAG_ALL="my_order";
+	final static String ORDER_FLAG_GAIQIAN="my_resign";
 	
 	static List<Station> stations;
 	AndroidHttpClient client=AndroidHttpClient.newInstance(null, null);
@@ -179,7 +184,7 @@ public  class TicketClient {
 			con.addRequestProperty("Accept-Encoding", "gzip,deflate,sdch");
 			con.addRequestProperty("Accept-Language", "zh-CN,zh;q=0.8,en;q=0.6,zh-TW;q=0.4");
 			con.addRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-			con.addRequestProperty("Content-Length", "80");
+//			con.addRequestProperty("Content-Length", "80");
 			con.setFollowRedirects(true);
 			//con.addRequestProperty(field, newValue);
 			Map map=con.getRequestProperties();
@@ -266,5 +271,37 @@ public  class TicketClient {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	public void queryMyOrder(User user,String starttime,String endtime,String flag){
+		String poststring = null;
+		HttpsURLConnection con;
+		URL url;
+		if(flag.equals(ORDER_FLAG_ALL)){
+			poststring="queryType=1&queryStartDate="+starttime+"&queryEndDate="+endtime+"&come_from_flag=my_order&pageSize=8&pageIndex=0&sequeue_train_name=";
+		}else if(flag.equals(ORDER_FLAG_TUIPIAO)){
+			poststring="queryType=1&queryStartDate="+starttime+"&queryEndDate="+endtime+"&come_from_flag=my_refund&pageSize=8&pageIndex=0&sequeue_train_name=";
+		}else if(flag.equals(ORDER_FLAG_GAIQIAN)){
+			poststring="queryType=1&queryStartDate="+starttime+"&queryEndDate="+endtime+"&come_from_flag=my_resign&pageSize=8&pageIndex=0&sequeue_train_name=";
+		}
+		try {
+			url=new URL(poststring);
+			con=(HttpsURLConnection)url.openConnection();
+			con.setSSLSocketFactory(sslcontex.getSocketFactory());
+			con.setRequestProperty("Cookie", user.getCookie());
+			InputStreamReader reader=new InputStreamReader(con.getInputStream());
+			char[] buffer = new char[1024];
+			StringBuilder sb = new StringBuilder();
+			while(reader.read(buffer)!=-1){
+				sb.append(buffer);
+			}
+			Log.i("getorder", new String(sb).toString());
+			String s = new String(sb);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

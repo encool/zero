@@ -82,6 +82,7 @@ public class LoginActivity extends Activity {
 	     protected void onPostExecute(Boolean result) {
 	    	 if(result==false){
 	    		  resultview.setText("µÇÂ½Ê§°Ü");
+	    		  new refreshPassCodeTask().execute(user);
 	    	 }else{
 	    		 startActivity(new Intent(resultview.getContext(),ProfileActivity.class));
 	    	 }

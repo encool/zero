@@ -14,8 +14,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/password"
-        android:layout_alignParentRight="false"
         android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/password"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:text="liqiao100@yahoo.cn" />
@@ -37,17 +37,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/passcodeimage"
+        android:layout_toLeftOf="@+id/passcodeimage"
         android:layout_toRightOf="@+id/textView2"
         android:text="login" />
-
-    <TextView
-        android:id="@+id/passcodeaa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/passcodeimage"
-        android:layout_alignLeft="@+id/textView3"
-        android:text="验证码"
-        android:textSize="17dp" />
 
    <EditText
        android:id="@+id/passcode"
@@ -78,8 +70,10 @@
        android:layout_height="wrap_content"
        android:layout_alignBaseline="@+id/login"
        android:layout_alignBottom="@+id/login"
+       android:layout_alignRight="@+id/password"
        android:layout_toRightOf="@+id/login"
-       android:textAppearance="?android:attr/textAppearanceLarge" />
+       android:textAppearance="?android:attr/textAppearanceLarge"
+       android:textSize="14dp" />
 
    <TextView
        android:id="@+id/textView2"
@@ -99,6 +93,16 @@
        android:layout_alignBottom="@+id/password"
        android:layout_alignLeft="@+id/textView2"
        android:text="密   码"
+       android:textSize="17dp" />
+
+   <TextView
+       android:id="@+id/passcodeaa"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignBaseline="@+id/passcode"
+       android:layout_alignBottom="@+id/passcode"
+       android:layout_alignLeft="@+id/textView3"
+       android:text="验证码"
        android:textSize="17dp" />
 
 </RelativeLayout>
