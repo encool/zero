@@ -272,7 +272,7 @@ public  class TicketClient {
 		}
 		return null;
 	}
-	public void queryMyOrder(User user,String starttime,String endtime,String flag){
+	public Order[] queryMyOrder(User user,String starttime,String endtime,String flag){
 		String poststring = null;
 		HttpsURLConnection con;
 		URL url;
@@ -296,6 +296,8 @@ public  class TicketClient {
 			}
 			Log.i("getorder", new String(sb).toString());
 			String s = new String(sb);
+			//to be continued
+			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -303,5 +305,10 @@ public  class TicketClient {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
+	}
+	public Order[] queryNocompleteOrder(){
+		return null;
+		
 	}
 }

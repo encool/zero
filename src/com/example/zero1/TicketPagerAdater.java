@@ -18,6 +18,7 @@ public class TicketPagerAdater extends FragmentPagerAdapter {
 		switch(index){
 		case 0:
 			sf=new QueryFragment();
+		case 1:
 		}
 		return sf;
 	}
@@ -26,6 +27,18 @@ public class TicketPagerAdater extends FragmentPagerAdapter {
 	public int getCount() {
 		// TODO Auto-generated method stub
 		return 1;
+	}
+
+	@Override
+	public CharSequence getPageTitle(int position) {
+		// TODO Auto-generated method stub
+		switch(position){
+		case 0:
+			return new String("≤È—Ø");
+		case 1:
+			return new String("∂©µ•");
+		}
+		return super.getPageTitle(position);
 	}
 
 }
