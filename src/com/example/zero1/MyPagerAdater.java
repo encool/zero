@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-public class TicketPagerAdater extends FragmentPagerAdapter {
+public class MyPagerAdater extends FragmentPagerAdapter {
 
-	public TicketPagerAdater(FragmentManager fm) {
+	public MyPagerAdater(FragmentManager fm) {
 		super(fm);
 		// TODO Auto-generated constructor stub
 	}
@@ -16,9 +16,13 @@ public class TicketPagerAdater extends FragmentPagerAdapter {
 		// TODO Auto-generated method stub
 		Fragment sf=null;
 		switch(index){
-		case 0:
+		case 0:		
 			sf=new QueryFragment();
+			break;
+//			sf=new OrderFragment();
 		case 1:
+			sf=new OrderFragment();
+			break;
 		}
 		return sf;
 	}
@@ -26,19 +30,22 @@ public class TicketPagerAdater extends FragmentPagerAdapter {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 1;
+		return 2;
 	}
 
 	@Override
 	public CharSequence getPageTitle(int position) {
 		// TODO Auto-generated method stub
+		String s = null;
 		switch(position){
 		case 0:
-			return new String("查询");
+			s=new String("查询");
+			break;
 		case 1:
-			return new String("订单");
+			s=new String("订单");
+			break;
 		}
-		return super.getPageTitle(position);
+		return s;
 	}
 
 }

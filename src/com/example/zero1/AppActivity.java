@@ -5,16 +5,20 @@ import com.example.zero1.account.AccountManager;
 import com.example.zero1.account.User;
 
 import android.accounts.Account;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 //import android.support.v7.*;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBar.Tab;
 import android.view.LayoutInflater;
 //import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -23,21 +27,36 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 
-public class AppActivity extends android.support.v7.app.ActionBarActivity {
+public class AppActivity extends android.support.v7.app.ActionBarActivity implements ActionBar.TabListener{
 	FragmentPagerAdapter ticketPageAdapter;
 	ViewPager viewpager;
     private LayoutInflater inflater;
+    static android.support.v7.app.ActionBar actionbar;
     static TicketClient tc;
     static AccountManager am=new AccountManager();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		final android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		actionbar = getSupportActionBar();
+		actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		viewpager=(ViewPager) findViewById(R.id.pager);
-		viewpager.setAdapter(new TicketPagerAdater(getSupportFragmentManager()));
+		FragmentPagerAdapter fpa=new MyPagerAdater(getSupportFragmentManager());
+		viewpager.setAdapter(fpa);
 		tc=new TicketClient(getApplicationContext());
+		Tab tab=actionbar.newTab().setText(fpa.getPageTitle(0)).setTabListener(
+				this);
+	    actionbar.addTab(tab);
+		Tab tab2=actionbar.newTab().setText(fpa.getPageTitle(1)).setTabListener(
+				this);
+	    actionbar.addTab(tab2);
+		viewpager
+		.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+			@Override
+			public void onPageSelected(int position) {
+				actionbar.setSelectedNavigationItem(position);
+			}
+		});
 		new TicketClientInitTask().execute(tc);
 	}
 	
@@ -109,5 +128,24 @@ public class AppActivity extends android.support.v7.app.ActionBarActivity {
 		}
 		
 	}
+
+	@Override
+	public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onTabSelected(Tab tab, FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+		viewpager.setCurrentItem(tab.getPosition());
+	}
+
+	@Override
+	public void onTabUnselected(Tab arg0, FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 
 }

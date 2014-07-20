@@ -11,4 +11,7 @@ public class AccountManager {
 	public boolean hasLoginedUser(){
 		return false;	
 	} 
+	public User getLoginUser(){
+		return new User();
+	}
 }

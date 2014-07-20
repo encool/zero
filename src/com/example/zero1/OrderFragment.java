@@ -12,10 +12,11 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
-public class ProfileFragment extends Fragment {
+public class OrderFragment extends Fragment {
 
 	Activity activity;
 	ExpandableListView exlistview;
+	OrderManager om=new OrderManager(AppActivity.tc,AppActivity.am.getLoginUser());
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -32,6 +33,7 @@ public class ProfileFragment extends Fragment {
 	
 	private void setView(){
 		exlistview=(ExpandableListView) activity.findViewById(R.id.expandablelistview);
+		exlistview.setAdapter(new MyExListviewAdapter(om));
 	}
 
 	@Override
@@ -39,6 +41,7 @@ public class ProfileFragment extends Fragment {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 		activity=getActivity();
+		setView();
 	}
 	private class MyExListviewAdapter extends BaseExpandableListAdapter{
 		
@@ -64,13 +67,14 @@ public class ProfileFragment extends Fragment {
 		public View getChildView(int groupPosition, int childPosition,
 				boolean isLastChild, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
-			return null;
+			return new OrderView(parent.getContext());
+//			return null;
 		}
 
 		@Override
 		public int getChildrenCount(int groupPosition) {
 			// TODO Auto-generated method stub
-			return 0;
+			return 2;
 		}
 
 		@Override

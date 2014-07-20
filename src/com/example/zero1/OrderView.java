@@ -25,7 +25,8 @@ public class OrderView extends LinearLayout {
 	}
 
 	public OrderView(Context context) {
-		super(context);
+//		super(context);
+		this(context, null);
 		// TODO Auto-generated constructor stub
 	}
 	void initView(){
