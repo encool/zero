@@ -24,6 +24,7 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.DefaultedHttpContext;
 import org.apache.http.protocol.HttpContext;
 
+import com.example.zero1.account.AccountManager;
 import com.example.zero1.account.User;
 import com.example.zero1.db.DBmanager;
 
@@ -55,6 +56,8 @@ public  class TicketClient {
 	Context context;
 	SSLContext sslcontex;
 	DBmanager dbmanager;
+	static AccountManager am=new AccountManager();
+	
 	public TicketClient() {
 		// TODO Auto-generated constructor stub
 		client=AndroidHttpClient.newInstance("a");

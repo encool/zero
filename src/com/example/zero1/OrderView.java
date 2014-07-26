@@ -3,6 +3,7 @@ package com.example.zero1;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ public class OrderView extends LinearLayout {
 		super(context, attrs);
 		// TODO Auto-generated constructor stub
 		LayoutInflater.from(context).inflate(R.layout.orderview_layout, this);
+		this.setLayoutParams(new AbsListView.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 	}
 
 	public OrderView(Context context) {

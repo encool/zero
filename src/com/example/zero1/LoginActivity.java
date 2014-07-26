@@ -23,7 +23,7 @@ public class LoginActivity extends Activity {
 	EditText passcodeview;
 	TextView resultview;
 	ImageView imageview;
-	User user=new User();
+	User user=TicketClient.am.generateUser();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -84,7 +84,11 @@ public class LoginActivity extends Activity {
 	    		  resultview.setText("µÇÂ½Ê§°Ü");
 	    		  new refreshPassCodeTask().execute(user);
 	    	 }else{
-	    		 startActivity(new Intent(resultview.getContext(),ProfileActivity.class));
+	    		 OrderFragment.om.user=user;
+	    		 TicketClient.am.setLoginedUser(user);
+	    		 user.setIsauthed(true);
+	    		 finish();
+//	    		 startActivity(new Intent(resultview.getContext(),ProfileActivity.class));
 	    	 }
 	    		
 	    	 

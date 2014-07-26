@@ -3,6 +3,7 @@ package com.example.zero1;
 import com.example.zero1.account.User;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,13 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.TextView;
 
 public class OrderFragment extends Fragment {
 
 	Activity activity;
 	ExpandableListView exlistview;
-	OrderManager om=new OrderManager(AppActivity.tc,AppActivity.am.getLoginUser());
+	static OrderManager om=new OrderManager(AppActivity.tc,AppActivity.am.getLoginedUser(null));
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -34,6 +36,21 @@ public class OrderFragment extends Fragment {
 	private void setView(){
 		exlistview=(ExpandableListView) activity.findViewById(R.id.expandablelistview);
 		exlistview.setAdapter(new MyExListviewAdapter(om));
+//		exlistview.setGroupIndicator(null);
+		exlistview.setOnGroupClickListener(new OnGroupClickListener(){
+
+			@Override
+			public boolean onGroupClick(ExpandableListView parent, View v,
+					int groupPosition, long id) {
+				// TODO Auto-generated method stub
+				if(!om.isUserLogined()){
+					startActivity(new Intent(parent.getContext(),LoginActivity.class));
+					return true;
+				}
+				return false;
+			}
+			
+		});
 	}
 
 	@Override
@@ -101,12 +118,20 @@ public class OrderFragment extends Fragment {
 			// TODO Auto-generated method stub
 			switch(groupPosition){
 			case 0:
-				TextView tv=new TextView(parent.getContext());
-				tv.setText("未完成订单");
-				return tv;
+				if(convertView!=null){
+					TextView tv=new TextView(parent.getContext());
+					tv.setText("    未完成订单");
+					tv.setTextSize(20);
+					return tv;
+				}
+//				TextView tv=new TextView(parent.getContext());
+//				tv.setText("    未完成订单");
+//				tv.setTextSize(20);
+//				return tv;
 			case 1:
 				TextView tv2=new TextView(parent.getContext());
-				tv2.setText("已完成订单");
+				tv2.setText("    已完成订单");
+				tv2.setTextSize(20);
 				return tv2;
 			}
 			return null;

@@ -20,4 +20,9 @@ public class OrderManager {
 		return null;
 		
 	}
+	public boolean isUserLogined(){
+		if(user==null)
+			return false;
+		return user.isIsauthed();
+	}
 }
