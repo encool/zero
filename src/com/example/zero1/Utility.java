@@ -130,4 +130,27 @@ public class Utility {
 			return "error";
 		}
 	}
+	public static ArrayList<Order> ParseOrderJson(String s){
+		JSONTokener jsonparser=new JSONTokener(s);
+		JSONObject logininfo;
+		ArrayList<Order> orders=new ArrayList<Order>();
+		try {
+			logininfo = (JSONObject) jsonparser.nextValue();
+			JSONObject jsonob=logininfo.getJSONObject("data");
+//			JSONObject jsonob1=jsonob.getJSONObject("orderDBList");
+			JSONArray jsonarray=jsonob.getJSONArray("orderDBList");
+			for(int i=1;i<=jsonarray.length();i++){
+				JSONObject orderjson=jsonarray.getJSONObject(i);
+				Order order=new Order();
+				order.ordernum=orderjson.getString("sequence_no");
+				order.date=orderjson.getString("order_date");
+				order.
+			}
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 }

@@ -291,6 +291,7 @@ public  class TicketClient {
 			con=(HttpsURLConnection)url.openConnection();
 			con.setSSLSocketFactory(sslcontex.getSocketFactory());
 			con.setRequestProperty("Cookie", user.getCookie());
+			
 			InputStreamReader reader=new InputStreamReader(con.getInputStream());
 			char[] buffer = new char[1024];
 			StringBuilder sb = new StringBuilder();
@@ -311,6 +312,31 @@ public  class TicketClient {
 		return null;
 	}
 	public Order[] queryNocompleteOrder(){
+		HttpsURLConnection con;
+		URL url;
+		String poststring="_json_att=";
+		try {
+			url=new URL(querynocomplete);
+			con=(HttpsURLConnection) url.openConnection();
+			con.setSSLSocketFactory(sslcontex.getSocketFactory());
+			OutputStream out = new BufferedOutputStream(con.getOutputStream());
+			out.write(poststring.getBytes());
+			out.flush();
+			InputStreamReader reader=new InputStreamReader(con.getInputStream());
+			char[] buffer = new char[1024];
+			StringBuilder sb = new StringBuilder();
+			while(reader.read(buffer)!=-1){
+				sb.append(buffer);
+			}
+			Log.i("getorder", new String(sb).toString());
+			String s = new String(sb);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 		
 	}
