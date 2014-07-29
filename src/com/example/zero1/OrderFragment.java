@@ -1,11 +1,15 @@
 package com.example.zero1;
 
+import java.util.ArrayList;
+
 import com.example.zero1.account.User;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,7 +71,7 @@ public class OrderFragment extends Fragment {
 			this.om=om;
 		}
 		OrderManager om;
-
+		ArrayList<Order> nocompleteoders=new ArrayList<Order>();
 		@Override
 		public Object getChild(int groupPosition, int childPosition) {
 			// TODO Auto-generated method stub
@@ -84,6 +88,12 @@ public class OrderFragment extends Fragment {
 		public View getChildView(int groupPosition, int childPosition,
 				boolean isLastChild, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
+			switch(groupPosition){
+			case 0:
+				
+			case 1:
+				
+			}
 			return new OrderView(parent.getContext());
 //			return null;
 		}
@@ -148,7 +158,24 @@ public class OrderFragment extends Fragment {
 			// TODO Auto-generated method stub
 			return false;
 		}
-		
+		private class QueryNoCompleteOrderTask extends AsyncTask<TicketClient, Void, ArrayList<Order>> {
+
+			@Override
+			protected ArrayList<Order> doInBackground(TicketClient... params) {
+				// TODO Auto-generated method stub
+
+//				String s=params[0].queryTrainInfo(TicketClient.queryurlformat,bundle.getString("date"),bundle.getString("from_station"),bundle.getString("to_station"), "ADULT");
+				return om.getNoCompleteOrders();
+				
+			}
+		     protected void onPostExecute(ArrayList<TrainInfoHoder> result) {
+		    	 Log.i("fuck", "notifydatasetchanged");
+		    	 listviewadapter.setTrainarray(result);
+		         listviewadapter.notifyDataSetChanged();
+		     }
+		 
+		 
+		}
 	} 
 
 }

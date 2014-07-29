@@ -1,5 +1,7 @@
 package com.example.zero1;
 
+import java.util.ArrayList;
+
 import com.example.zero1.account.User;
 
 public class OrderManager {
@@ -10,7 +12,7 @@ public class OrderManager {
 	}
 	TicketClient client;
 	User user;
-	public Order[] getNoCompleteOrders(){
+	public ArrayList<Order> getNoCompleteOrders(){
 		if(!user.isIsauthed()){
 			return null;
 		}

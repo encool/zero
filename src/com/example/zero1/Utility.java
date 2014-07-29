@@ -143,13 +143,35 @@ public class Utility {
 				JSONObject orderjson=jsonarray.getJSONObject(i);
 				Order order=new Order();
 				order.ordernum=orderjson.getString("sequence_no");
-				order.date=orderjson.getString("order_date");
-				order.
+				order.start_date=orderjson.getString("start_train_date_page");
+				order.cancel_flag=orderjson.getString("cancel_flag");
+				order.resign_flag=orderjson.getString("resign_flag");
+				order.return_flag=orderjson.getString("return_flag");
+//				order.status=orderjson.getString("ticket_status_name");
+				order.start_time=orderjson.getString("start_time_page");
+
+				JSONArray tickets=orderjson.getJSONArray("tickets");
+				for(int i1=1;i1<=tickets.length();i1++){
+					JSONObject ticket=tickets.getJSONObject(i);
+					order.startstation=ticket.getString("from_station_name");
+					order.arrivestation=ticket.getString("to_station_name");
+					order.status=ticket.getString("ticket_status_name");
+					order.coach_no=ticket.getString("coach_no");
+					order.seat_name=ticket.getString("seat_name");
+					order.seat_type_name=ticket.getString("seat_type_name");
+					
+				}
+				JSONObject passenger=orderjson.getJSONObject("passengerDTO");
+				order.passengername=passenger.getString("passenger_name");
+				
+				orders.add(order);
 			}
+			return orders;
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
 		
 	}

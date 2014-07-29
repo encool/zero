@@ -311,7 +311,7 @@ public  class TicketClient {
 		}
 		return null;
 	}
-	public Order[] queryNocompleteOrder(){
+	public ArrayList<Order> queryNocompleteOrder(){
 		HttpsURLConnection con;
 		URL url;
 		String poststring="_json_att=";
@@ -319,6 +319,7 @@ public  class TicketClient {
 			url=new URL(querynocomplete);
 			con=(HttpsURLConnection) url.openConnection();
 			con.setSSLSocketFactory(sslcontex.getSocketFactory());
+			con.setDoOutput(true);
 			OutputStream out = new BufferedOutputStream(con.getOutputStream());
 			out.write(poststring.getBytes());
 			out.flush();
@@ -330,6 +331,7 @@ public  class TicketClient {
 			}
 			Log.i("getorder", new String(sb).toString());
 			String s = new String(sb);
+			ArrayList<Order> orders=Utility.ParseOrderJson(s);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
