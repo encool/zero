@@ -16,7 +16,7 @@ public class OrderManager {
 		if(!user.isIsauthed()){
 			return null;
 		}
-		return client.queryNocompleteOrder();
+		return client.queryNocompleteOrder(user);
 	}
 	public Order[] getOrders(){
 		return null;

@@ -311,13 +311,14 @@ public  class TicketClient {
 		}
 		return null;
 	}
-	public ArrayList<Order> queryNocompleteOrder(){
+	public ArrayList<Order> queryNocompleteOrder(User user){
 		HttpsURLConnection con;
 		URL url;
 		String poststring="_json_att=";
 		try {
 			url=new URL(querynocomplete);
 			con=(HttpsURLConnection) url.openConnection();
+			con.setRequestProperty("Cookie", user.getCookie());
 			con.setSSLSocketFactory(sslcontex.getSocketFactory());
 			con.setDoOutput(true);
 			OutputStream out = new BufferedOutputStream(con.getOutputStream());
