@@ -11,7 +11,7 @@ public class OrderView extends LinearLayout {
 	Order order;
 	
 	TextView startstation;
-	TextView arrivestaion;
+	TextView arrivestation;
 	TextView ordernum;
 	TextView passangername;
 	TextView date;
@@ -24,6 +24,7 @@ public class OrderView extends LinearLayout {
 		// TODO Auto-generated constructor stub
 		LayoutInflater.from(context).inflate(R.layout.orderview_layout, this);
 		this.setLayoutParams(new AbsListView.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+		initView();
 	}
 
 	public OrderView(Context context) {
@@ -33,10 +34,10 @@ public class OrderView extends LinearLayout {
 	}
 	void initView(){
 		startstation=(TextView) this.findViewById(R.id.startstation);
-		arrivestaion=(TextView) this.findViewById(R.id.arrivestaion);
+		arrivestation=(TextView) this.findViewById(R.id.arrivestaion);
 		ordernum=(TextView) this.findViewById(R.id.ordernum);
 		passangername=(TextView) this.findViewById(R.id.passangername);
-		startstation=(TextView) this.findViewById(R.id.startstation);
+//		startstation=(TextView) this.findViewById(R.id.startstation);
 		date=(TextView) this.findViewById(R.id.date);
 		time=(TextView) this.findViewById(R.id.time);
 		seattype=(TextView) this.findViewById(R.id.seattype);
@@ -46,6 +47,14 @@ public class OrderView extends LinearLayout {
 
 	public void setOrderinfo(Order order) {
 		this.order = order;
+		startstation.setText(order.startstation);
+		arrivestation.setText(order.arrivestation);
+		ordernum.setText(order.ordernum);
+		passangername.setText(order.passengername);
+		date.setText(order.start_date);
+		time.setText(order.start_time);
+		seattype.setText(order.seat_type_name);
+		seatnum.setText(order.zuoci);
 	}
 
 }

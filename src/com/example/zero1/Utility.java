@@ -139,7 +139,7 @@ public class Utility {
 			JSONObject jsonob=logininfo.getJSONObject("data");
 //			JSONObject jsonob1=jsonob.getJSONObject("orderDBList");
 			JSONArray jsonarray=jsonob.getJSONArray("orderDBList");
-			for(int i=1;i<=jsonarray.length();i++){
+			for(int i=0;i<jsonarray.length();i++){
 				JSONObject orderjson=jsonarray.getJSONObject(i);
 				Order order=new Order();
 				order.ordernum=orderjson.getString("sequence_no");
@@ -151,18 +151,23 @@ public class Utility {
 				order.start_time=orderjson.getString("start_time_page");
 
 				JSONArray tickets=orderjson.getJSONArray("tickets");
-				for(int i1=1;i1<=tickets.length();i1++){
+				for(int i1=0;i1<tickets.length();i1++){
 					JSONObject ticket=tickets.getJSONObject(i);
-					order.startstation=ticket.getString("from_station_name");
-					order.arrivestation=ticket.getString("to_station_name");
+					
+					JSONObject stationTrainDTO=ticket.getJSONObject("stationTrainDTO");
+					order.startstation=stationTrainDTO.getString("from_station_name");
+					order.arrivestation=stationTrainDTO.getString("to_station_name");
+					
+					JSONObject passenger=ticket.getJSONObject("passengerDTO");
+					order.passengername=passenger.getString("passenger_name");
+					
 					order.status=ticket.getString("ticket_status_name");
 					order.coach_no=ticket.getString("coach_no");
 					order.seat_name=ticket.getString("seat_name");
 					order.seat_type_name=ticket.getString("seat_type_name");
 					
 				}
-				JSONObject passenger=orderjson.getJSONObject("passengerDTO");
-				order.passengername=passenger.getString("passenger_name");
+
 				
 				orders.add(order);
 			}

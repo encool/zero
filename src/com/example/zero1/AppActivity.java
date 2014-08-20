@@ -34,7 +34,7 @@ public class AppActivity extends android.support.v7.app.ActionBarActivity implem
     static android.support.v7.app.ActionBar actionbar;
     static TicketClient tc;
     static AccountManager am=new AccountManager();
-	@Override
+	@Override 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);

@@ -333,6 +333,7 @@ public  class TicketClient {
 			Log.i("getorder", new String(sb).toString());
 			String s = new String(sb);
 			ArrayList<Order> orders=Utility.ParseOrderJson(s);
+			return orders;
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

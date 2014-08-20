@@ -52,6 +52,8 @@ public class OrderFragment extends Fragment {
 					startActivity(new Intent(parent.getContext(),LoginActivity.class));
 					return true;
 				}
+				adapter.new QueryNoCompleteOrderTask().execute("s");
+				adapter.status=1;
 				return false;
 			}
 			
@@ -74,6 +76,7 @@ public class OrderFragment extends Fragment {
 		OrderManager om;
 		ArrayList<Order> orders=new ArrayList<Order>();
 		ArrayList<Order> nocompleteoders=new ArrayList<Order>();
+		int status=0;//0未查询 1查询中 2查询完毕
 		
 		@Override
 		public Object getChild(int groupPosition, int childPosition) {
@@ -93,16 +96,32 @@ public class OrderFragment extends Fragment {
 			// TODO Auto-generated method stub
 			switch(groupPosition){
 			case 0:
-				if(nocompleteoders!=null&&nocompleteoders.isEmpty()){
-					new QueryNoCompleteOrderTask().execute("s");				
-				}else if(!nocompleteoders.isEmpty()){
+				if(status==2&&nocompleteoders==null){
+					TextView tv=new TextView(activity);
+					tv.setText("查询出错");
+					return tv;
+				}
+				else if(status==2&&nocompleteoders.isEmpty()){
+					TextView tv=new TextView(activity);
+					tv.setText("没有相关信息");
+					return tv;
+				}else if(status==2&&!nocompleteoders.isEmpty()){
 					OrderView order = new OrderView(parent.getContext());
 					order.setOrderinfo(nocompleteoders.get(0));
+					return order;
+				}else if(status==1){
+					TextView tv=new TextView(activity);
+					tv.setText("查询中");
+					return tv;
 				}
+				break;
 			case 1:
 				
 			}
-			return new TextView(activity);
+			TextView tv=new TextView(activity);
+			tv.setText("查询中");
+			return tv;
+
 //			return new OrderView(parent.getContext());
 //			return null;
 		}
@@ -112,18 +131,21 @@ public class OrderFragment extends Fragment {
 			// TODO Auto-generated method stub
 			switch(groupPosition){
 			case 0:
-				if(nocompleteoders!=null&&nocompleteoders.isEmpty()){
+				if(status==1){
 					return 1;				
-				}else if(nocompleteoders!=null&&!nocompleteoders.isEmpty()){
+				}else if(status==2&&nocompleteoders!=null&&!nocompleteoders.isEmpty()){
 					return nocompleteoders.size();
+				}else if(status==2&&nocompleteoders!=null&&nocompleteoders.isEmpty()){
+					return 1;
 				}
 				break;
 			case 1:
 			default:
 				return 1;
+				
 			}
 //			return 2;
-			return 0;
+			return 1;
 		}
 
 		@Override
@@ -194,6 +216,7 @@ public class OrderFragment extends Fragment {
 		    	 Log.i("fuck", "notifydatasetchanged");
 //		    	 listviewadapter.setTrainarray(result);
 		    	 nocompleteoders=result;
+		    	 status=2;
 		    	 adapter.notifyDataSetChanged();
 		     }
 		 
