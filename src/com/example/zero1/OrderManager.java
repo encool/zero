@@ -18,8 +18,11 @@ public class OrderManager {
 		}
 		return client.queryNocompleteOrder(user);
 	}
-	public Order[] getOrders(){
-		return null;
+	public ArrayList<Order> getOrders(){
+		if(!user.isIsauthed()){
+			return null;
+		}
+		return client.queryMyOrder(user, null, null, null, null);
 		
 	}
 	public boolean isUserLogined(){

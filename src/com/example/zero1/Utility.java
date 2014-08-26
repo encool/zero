@@ -130,7 +130,7 @@ public class Utility {
 			return "error";
 		}
 	}
-	public static ArrayList<Order> ParseOrderJson(String s){
+	public static ArrayList<Order> parseNoCompleteOrderJson(String s){
 		JSONTokener jsonparser=new JSONTokener(s);
 		JSONObject logininfo;
 		ArrayList<Order> orders=new ArrayList<Order>();
@@ -176,8 +176,59 @@ public class Utility {
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
+			
 		}
-		
+		return orders;
+	}
+	
+	public static ArrayList<Order> parseMyOrderJson(String s){
+		JSONTokener jsonparser=new JSONTokener(s);
+		JSONObject logininfo;
+		ArrayList<Order> orders=new ArrayList<Order>();
+		try {
+			logininfo = (JSONObject) jsonparser.nextValue();
+			JSONObject jsonob=logininfo.getJSONObject("data");
+//			JSONObject jsonob1=jsonob.getJSONObject("orderDBList");
+			JSONArray jsonarray=jsonob.getJSONArray("OrderDTODataList");
+			for(int i=0;i<jsonarray.length();i++){
+				JSONObject orderjson=jsonarray.getJSONObject(i);
+				Order order=new Order();
+				order.ordernum=orderjson.getString("sequence_no");
+				order.start_date=orderjson.getString("start_train_date_page");
+				order.cancel_flag=orderjson.getString("cancel_flag");
+				order.resign_flag=orderjson.getString("resign_flag");
+				order.return_flag=orderjson.getString("return_flag");
+//				order.status=orderjson.getString("ticket_status_name");
+				order.start_time=orderjson.getString("start_time_page");
+
+				JSONArray tickets=orderjson.getJSONArray("tickets");
+				for(int i1=0;i1<tickets.length();i1++){
+					JSONObject ticket=tickets.getJSONObject(i);
+					
+					JSONObject stationTrainDTO=ticket.getJSONObject("stationTrainDTO");
+					order.startstation=stationTrainDTO.getString("from_station_name");
+					order.arrivestation=stationTrainDTO.getString("to_station_name");
+					
+					JSONObject passenger=ticket.getJSONObject("passengerDTO");
+					order.passengername=passenger.getString("passenger_name");
+					
+					order.status=ticket.getString("ticket_status_name");
+					order.coach_no=ticket.getString("coach_no");
+					order.seat_name=ticket.getString("seat_name");
+					order.seat_type_name=ticket.getString("seat_type_name");
+					
+				}
+
+				
+				orders.add(order);
+			}
+			return orders;
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		return orders;
 	}
 }

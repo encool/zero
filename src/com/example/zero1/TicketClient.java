@@ -332,7 +332,7 @@ public  class TicketClient {
 			}
 			Log.i("getorder", new String(sb).toString());
 			String s = new String(sb);
-			ArrayList<Order> orders=Utility.ParseOrderJson(s);
+			ArrayList<Order> orders=Utility.parseNoCompleteOrderJson(s);
 			return orders;
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -344,4 +344,39 @@ public  class TicketClient {
 		return null;
 		
 	}
+	
+	public ArrayList<Order> queryMyOrder(User user,String starttime,String endtime,String flag,String trainname){
+		HttpsURLConnection con;
+		URL url; 
+		String poststring="queryType=1&queryStartDate=2014-07-26&queryEndDate=2014-08-26&come_from_flag=my_order&pageSize=8&pageIndex=0&sequeue_train_name=";
+//		String poststring="queryType=1&queryStartDate="+starttime+"&queryEndDate="+endtime+"&come_from_flag="+flag+"&pageSize=8&pageIndex=0&sequeue_train_name="+trainname;
+		try {
+			url=new URL(querymyorder);
+			con=(HttpsURLConnection) url.openConnection();
+			con.setSSLSocketFactory(sslcontex.getSocketFactory());
+			con.addRequestProperty("cookie", user.getCookie());
+			con.setDoOutput(true);
+			OutputStream out = new BufferedOutputStream(con.getOutputStream());
+			out.write(poststring.getBytes());
+			out.flush();
+
+			InputStreamReader reader=new InputStreamReader(con.getInputStream());
+			char[] buffer = new char[1024];
+			StringBuilder sb = new StringBuilder();
+			while(reader.read(buffer)!=-1){
+				sb.append(buffer);
+			}
+			Log.i("getorder", new String(sb).toString());
+			String s = new String(sb);
+			ArrayList<Order> orders=Utility.parseMyOrderJson(s);
+			return orders;
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 }
