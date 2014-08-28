@@ -51,7 +51,7 @@ public class OrderView extends LinearLayout {
 		arrivestation.setText(order.arrivestation);
 		ordernum.setText(order.ordernum);
 		passangername.setText(order.passengername);
-		date.setText(order.start_date);
+		date.setText(order.start_date.substring(0, order.start_date.indexOf(" ")));
 		time.setText(order.start_time);
 		seattype.setText(order.seat_type_name);
 		seatnum.setText(order.zuoci);

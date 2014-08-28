@@ -69,7 +69,7 @@ public class Utility {
 		try { 
 			TrainInfoHoder infohoder;
 			JSONObject traininfo=(JSONObject) jsonparser.nextValue();
-			String validateMessagesShowId=traininfo.getString("validateMessagesShowId");
+//			String validateMessagesShowId=traininfo.getString("validateMessagesShowId");
 			String status=traininfo.getString("status");
 			JSONArray data=traininfo.getJSONArray("data");				
 			if(status.equals(new String("true"))){

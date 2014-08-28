@@ -50,6 +50,9 @@ public class AppActivity extends android.support.v7.app.ActionBarActivity implem
 		Tab tab2=actionbar.newTab().setText(fpa.getPageTitle(1)).setTabListener(
 				this);
 	    actionbar.addTab(tab2);
+		Tab tab3=actionbar.newTab().setText(fpa.getPageTitle(2)).setTabListener(
+				this);
+	    actionbar.addTab(tab3);
 		viewpager
 		.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 			@Override

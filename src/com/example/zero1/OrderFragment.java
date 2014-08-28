@@ -34,7 +34,7 @@ public class OrderFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View rootview=inflater.inflate(R.layout.fragment_profile, container,false);	
+		View rootview=inflater.inflate(R.layout.fragment_order, container,false);	
 		return rootview;
 	}
 	

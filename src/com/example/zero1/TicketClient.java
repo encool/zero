@@ -38,8 +38,8 @@ import android.util.Log;
 public  class TicketClient {
 
 	final static String stationurl="https://kyfw.12306.cn/otn/resources/js/framework/station_name.js";
-	final static String queryurlformat="https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=%s&leftTicketDTO.from_station=%s&leftTicketDTO.to_station=%s&purpose_codes=%s";
-	final static String queryurl="https://kyfw.12306.cn/otn/leftTicket/query?";
+	final static String queryurlformat="https://kyfw.12306.cn/otn/leftTicket/queryT?leftTicketDTO.train_date=%s&leftTicketDTO.from_station=%s&leftTicketDTO.to_station=%s&purpose_codes=%s";
+	final static String queryurl="https://kyfw.12306.cn/otn/leftTicket/queryT?";
 	final static String loginurl="https://kyfw.12306.cn/otn/login/loginAysnSuggest";
 	final static String passcodelogin="https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&rand=sjrand";
 	final static String logininiturl="https://kyfw.12306.cn/otn/login/init";
@@ -48,6 +48,7 @@ public  class TicketClient {
 	final static String ORDER_FLAG_TUIPIAO="my_refund";
 	final static String ORDER_FLAG_ALL="my_order";
 	final static String ORDER_FLAG_GAIQIAN="my_resign";
+	final static String getpassengerurl="https://kyfw.12306.cn/otn/passengers/init";
 	
 	static List<Station> stations;
 	AndroidHttpClient client=AndroidHttpClient.newInstance(null, null);
@@ -378,5 +379,37 @@ public  class TicketClient {
 		}
 		return null;
 	}
-	
+	public ArrayList<Passenger> getPassengers(User user){
+		HttpsURLConnection con;
+		URL url;
+		String poststring="_json_att=";
+		try {
+			url=new URL(getpassengerurl);
+			con=(HttpsURLConnection) url.openConnection();
+			con.setSSLSocketFactory(sslcontex.getSocketFactory());
+			con.addRequestProperty("Cookie", user.getCookie());
+			con.setDoOutput(true);
+			OutputStream out = new BufferedOutputStream(con.getOutputStream());
+			out.write(poststring.getBytes());
+			out.flush();
+			
+			InputStreamReader reader=new InputStreamReader(con.getInputStream());
+			char[] buffer = new char[1024];
+			StringBuilder sb = new StringBuilder();
+			while(reader.read(buffer)!=-1){
+				sb.append(buffer);
+			}
+			Log.i("getpassengerstring", new String(sb).toString());
+			String s = new String(sb);
+			String ss=s.substring(s.indexOf("var passengers="), s.indexOf("}];"+2));
+			Log.i("passengerstring", ss);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -31,6 +32,48 @@ public class TrainsInfoActivity extends Activity {
 		
 		//设置adapter
 		ListView listview=(ListView) findViewById(R.id.trainlist);
+		listview.setOnTouchListener(new OnTouchListener(){
+
+			@Override
+			public boolean onTouch(View arg0, MotionEvent arg1) {
+				// TODO Auto-generated method stub
+				// TODO Auto-generated method stub
+				switch (arg1.getAction()) {
+					case MotionEvent.ACTION_MOVE:	//按下监听
+						View view = getLayoutInflater().inflate(R.layout.activity_trains_info_control, null);
+						//mPopupWindow不显示时
+						if (mPopupWindow == null) {
+							//设置mPopupWindow
+							mPopupWindow = new PopupWindow(view, LayoutParams.MATCH_PARENT,
+									LayoutParams.WRAP_CONTENT);
+							//注意button要从绑定的布局里拿
+							Button button = (Button) view.findViewById(R.id.daybefor);
+							button.setOnClickListener(new OnClickListener() {
+								@Override
+								public void onClick(View arg0) {
+									// TODO Auto-generated method stub
+									
+								}});
+						}
+
+//							//mPopupWindow显示时设为消失
+//							if (mPopupWindow.isShowing()) {
+//								mPopupWindow.dismiss();
+//							}
+
+							//设置mPopupWindow为显示，并设置位置
+						mPopupWindow.showAtLocation(findViewById(R.id.trainlist),
+									Gravity.RIGHT | Gravity.BOTTOM, 0, 0);		
+						break;
+					case MotionEvent.ACTION_UP: //抬起监听
+						break;
+
+					default:
+						break;
+				}
+				//注意：这里要返回true
+				return true;
+			}});
 		listviewadapter=new TrainInfoListAdapter(this,arraylist); 
 		listview.setAdapter(listviewadapter);
 		//初始化bundle asynchronous要用

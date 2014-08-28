@@ -23,6 +23,8 @@ public class MyPagerAdater extends FragmentPagerAdapter {
 		case 1:
 			sf=new OrderFragment();
 			break;
+		case 2:
+			sf=new InfoFragment();
 		}
 		return sf;
 	}
@@ -30,7 +32,7 @@ public class MyPagerAdater extends FragmentPagerAdapter {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 2;
+		return 3;
 	}
 
 	@Override
@@ -43,6 +45,9 @@ public class MyPagerAdater extends FragmentPagerAdapter {
 			break;
 		case 1:
 			s=new String("订单");
+			break;
+		case 2:
+			s=new String("我的资料");
 			break;
 		}
 		return s;
