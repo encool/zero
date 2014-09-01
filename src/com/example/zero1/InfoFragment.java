@@ -21,6 +21,8 @@ public class InfoFragment extends Fragment {
 	Activity activity;
 	ExpandableListView expandablelistview;
 	InfoExListviewAdapter adapter;
+
+	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -64,12 +66,13 @@ public class InfoFragment extends Fragment {
 				}
 				switch(groupPosition){
 				case 0:
-//					adapter.new QueryNoCompleteOrderTask().execute("s");
-//					adapter.noCompletestatus=1;
-					break;
+
 				case 1:
-//					adapter.new QueryMyOrderTask().execute("s");
-//					adapter.myOrderstatus=1;
+					if(adapter.querypassengerstatus==0){
+						adapter.new QueryPassengerTask().execute("s"); 
+						adapter.querypassengerstatus=1;
+					}
+					break;
 				}
 				return false;
 			}
@@ -77,7 +80,10 @@ public class InfoFragment extends Fragment {
 		});
 	}
 	private class InfoExListviewAdapter extends BaseExpandableListAdapter{
-
+		
+		int querypassengerstatus=0;//0 not done,1 doing, 2 complete.
+		ArrayList<Passenger> passengers;
+		
 		@Override
 		public Object getChild(int groupPosition, int childPosition) {
 			// TODO Auto-generated method stub
@@ -94,6 +100,22 @@ public class InfoFragment extends Fragment {
 		public View getChildView(int groupPosition, int childPosition,
 				boolean isLastChild, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
+			switch(groupPosition){
+			case 0:
+			case 1:
+				if(querypassengerstatus==0&&passengers==null){
+					TextView tv=new TextView(activity);
+					tv.setText("没有相关信息");
+					return tv;
+				}else if(querypassengerstatus==1){
+					TextView tv=new TextView(activity);
+					tv.setText("查询中");
+					return tv;
+				}else if(querypassengerstatus==2&&passengers!=null){
+					PassengerView pv=new PassengerView(activity);
+					return pv;
+				}
+			}
 			return null;
 		}
 
@@ -160,25 +182,27 @@ public class InfoFragment extends Fragment {
 			// TODO Auto-generated method stub
 			return false;
 		}
+		private class QueryPassengerTask extends AsyncTask<String, Void, ArrayList<Passenger>> {
+
+			@Override
+			protected ArrayList<Passenger> doInBackground(String... a) {
+				// TODO Auto-generated method stub
+
+//				String s=params[0].queryTrainInfo(TicketClient.queryurlformat,bundle.getString("date"),bundle.getString("from_station"),bundle.getString("to_station"), "ADULT");
+				return AppActivity.tc.getPassengers(AppActivity.am.getLoginedUser(null));
+				
+			}
+		     protected void onPostExecute(ArrayList<Passenger> result) {
+		    	 Log.i("fuck", "notifydatasetchanged");
+//		    	 listviewadapter.setTrainarray(result);
+		    	 passengers=result;
+		    	 querypassengerstatus=2;
+		    	 adapter.notifyDataSetChanged();
+		     }
+		 
+		 
+		}
 		
 	}
-	private class QueryMyOrderTask extends AsyncTask<String, Void, ArrayList<Passenger>> {
 
-		@Override
-		protected ArrayList<Passenger> doInBackground(String... a) {
-			// TODO Auto-generated method stub
-
-//			String s=params[0].queryTrainInfo(TicketClient.queryurlformat,bundle.getString("date"),bundle.getString("from_station"),bundle.getString("to_station"), "ADULT");
-			return AppActivity.tc.getPassengers(AppActivity.am.getLoginedUser(null));
-			
-		}
-	     protected void onPostExecute(ArrayList<Order> result) {
-	    	 Log.i("fuck", "notifydatasetchanged");
-//	    	 listviewadapter.setTrainarray(result);
-
-	    	 adapter.notifyDataSetChanged();
-	     }
-	 
-	 
-	}
 }

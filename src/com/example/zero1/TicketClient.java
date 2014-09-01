@@ -57,7 +57,7 @@ public  class TicketClient {
 	Context context;
 	SSLContext sslcontex;
 	DBmanager dbmanager;
-	static AccountManager am=new AccountManager();
+//	static AccountManager am=new AccountManager();
 	
 	public TicketClient() {
 		// TODO Auto-generated constructor stub

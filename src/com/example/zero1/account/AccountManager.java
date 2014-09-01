@@ -12,7 +12,12 @@ public class AccountManager {
 		
 	}
 	public boolean hasLoginedUser(){
-		return false;	
+		if(loginedusers.size()==0){
+			return false;	
+		}else{
+			return true;
+		}
+		
 	} 
 	public User generateUser(){
 		return new User();
