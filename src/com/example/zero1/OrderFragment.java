@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnGroupClickListener;
@@ -208,20 +209,23 @@ public class OrderFragment extends Fragment {
 			// TODO Auto-generated method stub
 			switch(groupPosition){
 			case 0:
-				if(convertView!=null){
+				if(convertView==null){
 					TextView tv=new TextView(parent.getContext());
-					tv.setText("    未完成订单");
-					tv.setTextSize(20);
+					tv.setText("      未完成订单");
+					tv.setTextSize(18);
+//					tv.setHeight(20);
 					return tv;
 				}
+				return convertView;
 //				TextView tv=new TextView(parent.getContext());
 //				tv.setText("    未完成订单");
 //				tv.setTextSize(20);
 //				return tv;
 			case 1:
 				TextView tv2=new TextView(parent.getContext());
-				tv2.setText("    已完成订单");
-				tv2.setTextSize(20);
+				tv2.setText("      已完成订单");
+				tv2.setTextSize(18);
+
 				return tv2;
 			}
 			return null;

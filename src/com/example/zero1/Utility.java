@@ -1,5 +1,7 @@
 package com.example.zero1;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -230,5 +232,33 @@ public class Utility {
 			
 		}
 		return orders;
+	}
+	public static ArrayList<Passenger> parsePassengerJson(String s){
+		String ss="{\"passengers\":"+s+"}";
+		ArrayList<Passenger> passengers=new ArrayList<Passenger>();
+		JSONTokener jsontoken=new JSONTokener(ss);
+		try {
+			JSONObject jsonob=(JSONObject) jsontoken.nextValue();
+			JSONArray jsonarray=jsonob.getJSONArray("passengers");
+			for(int i=0;i<jsonarray.length();i++){
+				JSONObject jb=jsonarray.getJSONObject(i);
+				Passenger pa=new Passenger();
+				pa.id=jb.getString("passenger_id_no");
+				String name=jb.getString("passenger_name");
+				pa.name=URLDecoder.decode(name, "UTF-8");//url±àÂë
+				pa.phonenum=jb.getString("mobile_no");
+				String type=jb.getString("passenger_type_name");
+				pa.type=URLDecoder.decode(type, "UTF-8");//url bianma
+				passengers.add(pa);
+			}
+			int i=1;
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return passengers;
 	}
 }

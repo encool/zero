@@ -81,8 +81,8 @@ public class InfoFragment extends Fragment {
 	}
 	private class InfoExListviewAdapter extends BaseExpandableListAdapter{
 		
-		int querypassengerstatus=0;//0 not done,1 doing, 2 complete.
-		ArrayList<Passenger> passengers;
+		int querypassengerstatus=0;//0 doesnt do,1 doing, 2 complete.
+		ArrayList<Passenger> passengers=new ArrayList<Passenger>();
 		
 		@Override
 		public Object getChild(int groupPosition, int childPosition) {
@@ -112,8 +112,16 @@ public class InfoFragment extends Fragment {
 					tv.setText("查询中");
 					return tv;
 				}else if(querypassengerstatus==2&&passengers!=null){
-					PassengerView pv=new PassengerView(activity);
-					return pv;
+					if(childPosition==0){
+						View v=LayoutInflater.from(activity).inflate(R.layout.passengerview_title, null);
+						return v;
+					}else{
+						PassengerView pv=new PassengerView(activity,null);
+						pv.initView();
+						pv.setPassengerInfo(passengers.get(childPosition-1));
+						return pv;
+					}
+
 				}
 			}
 			return null;
@@ -122,6 +130,12 @@ public class InfoFragment extends Fragment {
 		@Override
 		public int getChildrenCount(int groupPosition) {
 			// TODO Auto-generated method stub
+			switch(groupPosition){
+			case 0:
+				break;
+			case 1:
+				return passengers.size()+1;
+			}
 			return 0;
 		}
 
@@ -153,18 +167,19 @@ public class InfoFragment extends Fragment {
 			case 0:
 				if(convertView==null){
 					TextView tv=new TextView(parent.getContext());
-					tv.setText("    个人信息");
-					tv.setTextSize(20);
+					tv.setText("      个人信息");
+					tv.setTextSize(18);
 					return tv;
 				}
+				return convertView;
 //				TextView tv=new TextView(parent.getContext());
 //				tv.setText("    未完成订单");
 //				tv.setTextSize(20);
 //				return tv;
 			case 1:
 				TextView tv2=new TextView(parent.getContext());
-				tv2.setText("    常用联系人");
-				tv2.setTextSize(20);
+				tv2.setText("      常用联系人");
+				tv2.setTextSize(18);
 				return tv2;
 			}
 			return null;

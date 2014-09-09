@@ -19,15 +19,15 @@ public class PassengerView extends LinearLayout {
 		// TODO Auto-generated constructor stub
 		LayoutInflater.from(context).inflate(R.layout.passenger_view_layout, this);
 		this.setLayoutParams(new AbsListView.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-		initView();
+//		initView();
 	}
 	public PassengerView(Context context){
 		this(context, null);
 	}
 	public void initView(){
-		passengername=(TextView) this.findViewById(R.id.passangername);
+		passengername=(TextView) this.findViewById(R.id.passengername2);
 		idnum=(TextView) this.findViewById(R.id.idnum);
-		status=(TextView) this.findViewById(R.id.status);
+		status=(TextView) this.findViewById(R.id.mobilenum);
 	}
 	public void setPassengerInfo(Passenger p){
 		passengername.setText(p.name);

@@ -401,8 +401,10 @@ public  class TicketClient {
 			}
 			Log.i("getpassengerstring", new String(sb).toString());
 			String s = new String(sb);
-			String ss=s.substring(s.indexOf("var passengers="), s.indexOf("}];"+2));
+//			int i=s.indexOf("var passengers=");j=s.indexOf(c)
+			String ss=s.substring(s.indexOf("var passengers=")+15, s.indexOf("}];")+2);
 			Log.i("passengerstring", ss);
+			return Utility.parsePassengerJson(ss);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
