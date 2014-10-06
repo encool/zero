@@ -8,6 +8,8 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -38,8 +40,8 @@ import android.util.Log;
 public  class TicketClient {
 
 	final static String stationurl="https://kyfw.12306.cn/otn/resources/js/framework/station_name.js";
-	final static String queryurlformat="https://kyfw.12306.cn/otn/leftTicket/queryT?leftTicketDTO.train_date=%s&leftTicketDTO.from_station=%s&leftTicketDTO.to_station=%s&purpose_codes=%s";
-	final static String queryurl="https://kyfw.12306.cn/otn/leftTicket/queryT?";
+	final static String queryurlformat="https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=%s&leftTicketDTO.from_station=%s&leftTicketDTO.to_station=%s&purpose_codes=%s";
+	final static String queryurl="https://kyfw.12306.cn/otn/leftTicket/query?";
 	final static String loginurl="https://kyfw.12306.cn/otn/login/loginAysnSuggest";
 	final static String passcodelogin="https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&rand=sjrand";
 	final static String logininiturl="https://kyfw.12306.cn/otn/login/init";
@@ -401,7 +403,7 @@ public  class TicketClient {
 			}
 			Log.i("getpassengerstring", new String(sb).toString());
 			String s = new String(sb);
-			String ss=s.substring(s.indexOf("var passengers="), s.indexOf("}];"+2));
+			String ss=s.substring(s.indexOf("var passengers="), s.indexOf("}];")+2);
 			Log.i("passengerstring", ss);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -411,5 +413,52 @@ public  class TicketClient {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	public boolean submitOrderRequest(TrainInfoHoder traininfo,User user){
+		SimpleDateFormat dateformat=new SimpleDateFormat("yyyymmdd");
+		SimpleDateFormat dateformat1=new SimpleDateFormat("yyyy-mm-dd");
+		Date date = null;
+		try {
+			date = dateformat.parse(traininfo.start_train_date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String train_date=dateformat1.format(date);
+		String urlstr="https://kyfw.12306.cn/otn/leftTicket/submitOrderRequest";
+		String postdata="secretStr="+traininfo.secretStr+
+				"&train_date="+train_date+"&back_train_date="+QueryFragment.back_time+
+						"&tour_flag=dc&purpose_codes="+QueryFragment.purpose_codes+"&query_from_station_name="+traininfo.from_station_name_ch+"" +
+								"&query_to_station_name="+traininfo.to_station_name_ch+"&undefined";
+		try {
+			URL url=new URL(urlstr);
+			HttpsURLConnection con=(HttpsURLConnection) url.openConnection();
+			con.setSSLSocketFactory(sslcontex.getSocketFactory());
+			con.addRequestProperty("Cookie", user.getCookie());
+			con.setDoOutput(true);
+			OutputStream out = new BufferedOutputStream(con.getOutputStream());
+			out.write(postdata.getBytes());
+			out.flush();
+			
+			InputStreamReader reader=new InputStreamReader(con.getInputStream());
+			char[] buffer = new char[1024];
+			StringBuilder sb = new StringBuilder();
+			while(reader.read(buffer)!=-1){
+				sb.append(buffer);
+			}
+			Log.i("getpassengerstring", new String(sb).toString());
+			String s = new String(sb);
+			
+			if(con.getResponseCode()==200)
+				return true;
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+		
 	}
 }
