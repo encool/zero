@@ -24,7 +24,7 @@
 
         <!-- 如何根据level选择主题？？ -->
         <activity
-            android:name="com.example.zero1.AppActivity"
+            android:name=".AppActivity"
             android:label="@string/app_name"
             android:uiOptions="splitActionBarWhenNarrow" >
             <intent-filter>
@@ -34,31 +34,35 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.zero1.CityChoose"
+            android:name=".CityChoose"
             android:exported="true" >
         </activity>
         <activity
-            android:name="com.example.zero1.DateChoose"
+            android:name=".DateChoose"
             android:exported="true" >
         </activity>
         <activity
-            android:name="com.example.zero1.InitActivityMainActivity"
+            android:name=".InitActivityMainActivity"
             android:label="@string/title_activity_init_activity_main" >
         </activity>
         <activity
-            android:name="com.example.zero1.TrainsInfoActivity"
+            android:name=".TrainsInfoActivity"
             android:label="@string/title_activity_trains_info" >
         </activity>
 
         <uses-library android:name="android.test.runner" />
 
         <activity
-            android:name="com.example.zero1.LoginActivity"
+            android:name=".LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
         <activity
-            android:name="com.example.zero1.ProfileActivity"
+            android:name=".ProfileActivity"
             android:label="@string/title_activity_profile" >
+        </activity>
+        <activity
+            android:name=".BookViewActivity"
+            android:label="@string/title_activity_book_view" >
         </activity>
     </application>
 

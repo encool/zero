@@ -21,4 +21,7 @@
 	<dimen name="seattextsize">12dp</dimen>
 	<dimen name="timetextsize">10dp</dimen>
 	<dimen name="trainitemmargin">20dp</dimen>
+	<dimen name="bookviewacticity_textsize_1">13sp</dimen>
+	<dimen name="bookviewactivity_textsize_2">16sp</dimen>
+	<dimen name="bookviewactivity_textsize_3">20sp</dimen>
 </resources>

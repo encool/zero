@@ -213,7 +213,7 @@ public class OrderFragment extends Fragment {
 					TextView tv=new TextView(parent.getContext());
 					tv.setText("      未完成订单");
 					tv.setTextSize(18);
-//					tv.setHeight(20);
+					tv.setHeight(20);
 					return tv;
 				}
 				return convertView;
@@ -225,7 +225,6 @@ public class OrderFragment extends Fragment {
 				TextView tv2=new TextView(parent.getContext());
 				tv2.setText("      已完成订单");
 				tv2.setTextSize(18);
-
 				return tv2;
 			}
 			return null;

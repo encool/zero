@@ -15,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -80,10 +81,11 @@ public class TrainsInfoActivity extends Activity {
 				}
 
 				//注意：这里要返回true
-				return true;
+				return false;
 			}});
 		listviewadapter=new TrainInfoListAdapter(this,arraylist); 
 		listview.setAdapter(listviewadapter);
+		listview.setOnItemClickListener(listviewadapter);
 		//初始化bundle asynchronous要用
 		bundle=getIntent().getBundleExtra("traininfo");
 		new TicketClientQueryTrainTask().execute(AppActivity.tc);
@@ -129,44 +131,44 @@ public class TrainsInfoActivity extends Activity {
 		super.onPause();
 	}
 
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-		// TODO Auto-generated method stub
-		switch (event.getAction()) {
-			case MotionEvent.ACTION_MOVE:	//按下监听
-				View view = getLayoutInflater().inflate(R.layout.activity_trains_info_control, null);
-				//mPopupWindow不显示时
-				if (mPopupWindow == null) {
-					//设置mPopupWindow
-					mPopupWindow = new PopupWindow(view, LayoutParams.MATCH_PARENT,
-							LayoutParams.WRAP_CONTENT);
-					//注意button要从绑定的布局里拿
-					Button button = (Button) view.findViewById(R.id.daybefor);
-					button.setOnClickListener(new OnClickListener() {
-						@Override
-						public void onClick(View arg0) {
-							// TODO Auto-generated method stub
-							
-						}});
-				}
-
-//					//mPopupWindow显示时设为消失
-//					if (mPopupWindow.isShowing()) {
-//						mPopupWindow.dismiss();
-//					}
-
-					//设置mPopupWindow为显示，并设置位置
-				mPopupWindow.showAtLocation(findViewById(R.id.trainlist),
-							Gravity.RIGHT | Gravity.BOTTOM, 0, 0);		
-				break;
-			case MotionEvent.ACTION_UP: //抬起监听
-				break;
-
-			default:
-				break;
-		}
-		//注意：这里要返回true
-		return true;
-//		return super.onTouchEvent(event);
-	}
+//	@Override
+//	public boolean onTouchEvent(MotionEvent event) {
+//		// TODO Auto-generated method stub
+//		switch (event.getAction()) {
+//			case MotionEvent.ACTION_MOVE:	//按下监听
+//				View view = getLayoutInflater().inflate(R.layout.activity_trains_info_control, null);
+//				//mPopupWindow不显示时
+//				if (mPopupWindow == null) {
+//					//设置mPopupWindow
+//					mPopupWindow = new PopupWindow(view, LayoutParams.MATCH_PARENT,
+//							LayoutParams.WRAP_CONTENT);
+//					//注意button要从绑定的布局里拿
+//					Button button = (Button) view.findViewById(R.id.daybefor);
+//					button.setOnClickListener(new OnClickListener() {
+//						@Override
+//						public void onClick(View arg0) {
+//							// TODO Auto-generated method stub
+//							
+//						}});
+//				}
+//
+////					//mPopupWindow显示时设为消失
+////					if (mPopupWindow.isShowing()) {
+////						mPopupWindow.dismiss();
+////					}
+//
+//					//设置mPopupWindow为显示，并设置位置
+//				mPopupWindow.showAtLocation(findViewById(R.id.trainlist),
+//							Gravity.RIGHT | Gravity.BOTTOM, 0, 0);		
+//				break;
+//			case MotionEvent.ACTION_UP: //抬起监听
+//				break;
+//
+//			default:
+//				break;
+//		}
+//		//注意：这里要返回true
+//		return true;
+////		return super.onTouchEvent(event);
+//	}
 }

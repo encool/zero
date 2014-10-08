@@ -19,7 +19,7 @@ public class PassengerView extends LinearLayout {
 		// TODO Auto-generated constructor stub
 		LayoutInflater.from(context).inflate(R.layout.passenger_view_layout, this);
 		this.setLayoutParams(new AbsListView.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-//		initView();
+		initView();
 	}
 	public PassengerView(Context context){
 		this(context, null);

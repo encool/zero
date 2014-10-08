@@ -29,6 +29,8 @@ public class QueryFragment extends Fragment {
 	
 	final static int LEFTSTATION_REQUEST_CODE=1;
 	final static int RIGHTSTATION_REQUEST_CODE=2;
+	static String back_time="2014-10-10";//返程时间
+	static String purpose_codes="ADULT";//票类型
 	TextView leftstationview;
 	TextView rightstationview;
 	View data_select_view;
