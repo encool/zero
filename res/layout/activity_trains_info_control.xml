@@ -12,7 +12,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:text="前一天" />
+        android:paddingRight="10dp"
+        android:text="前一天"
+        android:textSize="18dp" />
 
     <Button
         android:id="@+id/selectdate"
@@ -22,7 +24,8 @@
         android:background="@null"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:text="选择日期" />
+        android:text="选择日期"
+        android:textSize="18dp" />
 
     <Button
         android:id="@+id/daynext"
@@ -30,6 +33,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:text="后一天" />
+        android:paddingLeft="10dp"
+        android:text="后一天"
+        android:textSize="18sp" />
 
 </LinearLayout>
