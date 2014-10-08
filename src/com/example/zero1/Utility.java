@@ -96,7 +96,7 @@ public class Utility {
 						infohoder.zy_num=jsonob.getString("zy_num");
 						infohoder.ze_num=jsonob.getString("ze_num");
 						infohoder.swz_num=jsonob.getString("wz_num");
-						
+						infohoder.start_train_date=jsonob.getString("start_train_date");
 						infohoder.start_station_code=jsonob.getString("start_station_telecode");
 						infohoder.start_station_name_ch=jsonob.getString("start_station_name");
 						infohoder.start_time=jsonob.getString("start_time");
@@ -104,6 +104,7 @@ public class Utility {
 						infohoder.start_station_name_ch=jsonob.getString("start_station_name");
 						infohoder.to_station_code=jsonob.getString("to_station_telecode");
 						infohoder.to_station_name_ch=jsonob.getString("to_station_name");
+						infohoder.convertDateFormat();
 						array.add(infohoder);
 					}
 

@@ -181,7 +181,6 @@ public class OrderFragment extends Fragment {
 				return 1;
 				
 			}
-//			return 2;
 			return 1;
 		}
 
@@ -206,28 +205,32 @@ public class OrderFragment extends Fragment {
 		@Override
 		public View getGroupView(int groupPosition, boolean isExpanded,
 				View convertView, ViewGroup parent) {
+			TextView tv = null;
 			// TODO Auto-generated method stub
 			switch(groupPosition){
 			case 0:
 				if(convertView==null){
-					TextView tv=new TextView(parent.getContext());
+					tv=new TextView(parent.getContext());
 					tv.setText("      未完成订单");
 					tv.setTextSize(18);
-					tv.setHeight(20);
-					return tv;
-				}
-				return convertView;
+//					tv.setHeight(20);
+				}else
+					tv=(TextView) convertView;
+				break;
 //				TextView tv=new TextView(parent.getContext());
 //				tv.setText("    未完成订单");
 //				tv.setTextSize(20);
 //				return tv;
 			case 1:
-				TextView tv2=new TextView(parent.getContext());
-				tv2.setText("      已完成订单");
-				tv2.setTextSize(18);
-				return tv2;
+				if(convertView==null){
+					tv=new TextView(parent.getContext());
+					tv.setText("      已完成订单");
+					tv.setTextSize(18);
+				}else
+					tv=(TextView) convertView;
+				break;
 			}
-			return null;
+			return tv;
 		}
 
 		@Override

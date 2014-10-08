@@ -34,6 +34,17 @@ public class TrainsInfoActivity extends Activity {
 		
 		//设置adapter
 		ListView listview=(ListView) findViewById(R.id.trainlist);
+		View view = getLayoutInflater().inflate(R.layout.activity_trains_info_control, null);
+
+		mPopupWindow = new PopupWindow(view, LayoutParams.MATCH_PARENT,
+				LayoutParams.WRAP_CONTENT);
+		//注意button要从绑定的布局里拿
+		Button button = (Button) view.findViewById(R.id.daybefor);
+		button.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub									
+			}});
 		listview.setOnTouchListener(new OnTouchListener(){
 			
 			
@@ -45,7 +56,8 @@ public class TrainsInfoActivity extends Activity {
 				Runnable mHideRunnable = new Runnable() {
 					@Override
 					public void run() {
-						mPopupWindow.dismiss();
+						if(mPopupWindow!=null)
+							mPopupWindow.dismiss();
 						hasdelaytask=false;
 					}
 				};
@@ -53,7 +65,7 @@ public class TrainsInfoActivity extends Activity {
 					case MotionEvent.ACTION_MOVE:	//按下监听
 						View view = getLayoutInflater().inflate(R.layout.activity_trains_info_control, null);
 						//mPopupWindow不显示时
-						if (mPopupWindow == null) {
+//						if (mPopupWindow == null) {
 							//设置mPopupWindow
 							mPopupWindow = new PopupWindow(view, LayoutParams.MATCH_PARENT,
 									LayoutParams.WRAP_CONTENT);
@@ -64,7 +76,7 @@ public class TrainsInfoActivity extends Activity {
 								public void onClick(View arg0) {
 									// TODO Auto-generated method stub									
 								}});
-						}
+//						}
 						//设置mPopupWindow为显示，并设置位置
 						mPopupWindow.showAtLocation(findViewById(R.id.trainlist),
 									Gravity.RIGHT | Gravity.BOTTOM, 0, 0);		
@@ -126,8 +138,10 @@ public class TrainsInfoActivity extends Activity {
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
-		mPopupWindow.dismiss();
-		hasdelaytask=false;
+		if(hasdelaytask==true){
+			mPopupWindow.dismiss();
+			hasdelaytask=false;
+		}
 		super.onPause();
 	}
 

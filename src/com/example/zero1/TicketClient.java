@@ -351,7 +351,7 @@ public  class TicketClient {
 	public ArrayList<Order> queryMyOrder(User user,String starttime,String endtime,String flag,String trainname){
 		HttpsURLConnection con;
 		URL url; 
-		String poststring="queryType=1&queryStartDate=2014-07-26&queryEndDate=2014-08-26&come_from_flag=my_order&pageSize=8&pageIndex=0&sequeue_train_name=";
+		String poststring="queryType=1&queryStartDate=2014-08-26&queryEndDate=2014-10-8&come_from_flag=my_order&pageSize=8&pageIndex=0&sequeue_train_name=";
 //		String poststring="queryType=1&queryStartDate="+starttime+"&queryEndDate="+endtime+"&come_from_flag="+flag+"&pageSize=8&pageIndex=0&sequeue_train_name="+trainname;
 		try {
 			url=new URL(querymyorder);
@@ -403,7 +403,7 @@ public  class TicketClient {
 			}
 			Log.i("getpassengerstring", new String(sb).toString());
 			String s = new String(sb);
-			String ss=s.substring(s.indexOf("var passengers="), s.indexOf("}];")+2);
+			String ss=s.substring(s.indexOf("var passengers=")+15, s.indexOf("}];")+2);
 			Log.i("passengerstring", ss);
 			return Utility.parsePassengerJson(ss);
 		} catch (MalformedURLException e) {
