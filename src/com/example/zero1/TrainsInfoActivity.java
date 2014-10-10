@@ -145,6 +145,7 @@ public class TrainsInfoActivity extends Activity {
 		super.onPause();
 	}
 
+
 //	@Override
 //	public boolean onTouchEvent(MotionEvent event) {
 //		// TODO Auto-generated method stub
