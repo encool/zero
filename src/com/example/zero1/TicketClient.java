@@ -13,9 +13,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -302,7 +305,26 @@ public  class TicketClient {
 	}
 	
 	public String getHideLoginValue(){
-		
+		Map map = new HashMap();
+		String regex = "<input type=\"hidden\" name=\"\\w\" value=\"\\w\">";
+		Pattern pattern=Pattern.compile(regex);
+		try {
+			URL url = new URL(logininiturl);
+			HttpsURLConnection con=(HttpsURLConnection) url.openConnection();
+			con.setSSLSocketFactory(sslcontex.getSocketFactory());
+			String s=readStream(con.getInputStream());
+			Matcher matcher=pattern.matcher(s);
+			String str=matcher.group();
+			Log.i("gethidevalue", str);
+//			String key1=s.substring(s.indexOf(mapStr1)+mapStr1.length(),)
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return regex;
 	}
 	
 	public boolean loginRequst(User user,String random){
@@ -316,7 +338,7 @@ public  class TicketClient {
 			con.setSSLSocketFactory(sslcontex.getSocketFactory());
 			con.setDoOutput(true);
 			Log.i("fuck", user.getCookie());
-			
+			getHideLoginValue();
 			con.addRequestProperty("Cookie", user.getCookie());
 //			con.addRequestProperty("Cookie", "_jc_save_fromStation=%u8861%u9633%2CHYQ; _jc_save_toStation=%u6E58%u6F6D%2CXTQ; _jc_save_fromDate=2014-03-15; _jc_save_toDate=2014-03-15; _jc_save_wfdc_flag=dc");
 //			con.addRequestProperty("Connection", "keep-alive");
