@@ -188,10 +188,12 @@ public class QueryFragment extends Fragment {
 		try{
 			leftinitialstation=dbmanager.queryStationFromdb(1, station1).get(0);
 			rightinitialstaion=dbmanager.queryStationFromdb(1, station2).get(0);
+			dbmanager.closeBD();
 			return true;
 		}catch(Exception e){
 			Log.i("li", "初始化两个站点失败了");
 			return false;
 		}
+		
 	}
 }

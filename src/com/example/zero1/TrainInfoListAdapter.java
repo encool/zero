@@ -112,10 +112,15 @@ public class TrainInfoListAdapter extends BaseAdapter implements OnItemClickList
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		// TODO Auto-generated method stub
-		Intent intent=new Intent(arg1.getContext(),BookViewActivity.class);
-//		Bundle bundle=new Bundle();
-//		bundle.putSerializable("train", trainarray.get(arg2));
-		arg1.getContext().startActivity(intent.putExtra("train", trainarray.get(arg2)));
+		if(!AppActivity.am.hasLoginedUser()){
+			arg1.getContext().startActivity(new Intent(arg0.getContext(),LoginActivity.class));
+		}else{
+			Intent intent=new Intent(arg1.getContext(),BookViewActivity.class);
+//			Bundle bundle=new Bundle();
+//			bundle.putSerializable("train", trainarray.get(arg2));
+			arg1.getContext().startActivity(intent.putExtra("train", trainarray.get(arg2)));
+		}
+
 	}
 
 }

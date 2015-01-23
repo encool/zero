@@ -10,6 +10,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import android.util.Log;
+
 public class Utility {
 	public static List<Station> splitStringToArray(String source,String mark1,String mark2){
 		ArrayList<Station> stations = new ArrayList<Station>();
@@ -65,6 +67,63 @@ public class Utility {
 
 		return new String(sb);		
 	}
+	public static ArrayList<TrainInfoHoder> ParseAgAndrJsonToArray(String s){
+		JSONTokener jsonparser=new JSONTokener(s);
+		ArrayList<TrainInfoHoder> array=new ArrayList<TrainInfoHoder>();
+		TrainInfoHoder infohoder;
+		try {
+			JSONObject traininfo=(JSONObject) jsonparser.nextValue();
+			String status=traininfo.getString("status");
+			JSONObject data=traininfo.getJSONObject("data");
+			JSONArray datas=data.getJSONArray("datas");
+			if(status.equals(new String("true"))){
+				for(int i=0;i<datas.length();i++){  
+					
+					JSONObject jsonob=datas.getJSONObject(i);
+					
+//					JSONObject jsonob=object.getJSONObject("queryLeftNewDTO");
+					if(jsonob!=null){
+						infohoder=new TrainInfoHoder();
+//						infohoder.secretStr=object.getString("secretStr"); 
+						infohoder.arrive_time=jsonob.getString("arrive_time");
+						infohoder.end_starion_code=jsonob.getString("end_station_telecode");
+						infohoder.end_station_name_ch=jsonob.getString("end_station_name");
+						infohoder.from_station_code=jsonob.getString("from_station_telecode");
+						infohoder.from_station_name_ch=jsonob.getString("from_station_name");
+						infohoder.lishi=jsonob.getString("lishi");
+						infohoder.rw_num=jsonob.getString("rw_num");
+						infohoder.yw_num=jsonob.getString("yw_num");
+						infohoder.yz_num=jsonob.getString("yz_num");
+						infohoder.wz_num=jsonob.getString("wz_num");
+						infohoder.zy_num=jsonob.getString("zy_num");
+						infohoder.ze_num=jsonob.getString("ze_num");
+						infohoder.swz_num=jsonob.getString("wz_num");
+						infohoder.start_train_date=jsonob.getString("start_train_date");
+						infohoder.start_station_code=jsonob.getString("start_station_telecode");
+						infohoder.start_station_name_ch=jsonob.getString("start_station_name");
+						infohoder.start_time=jsonob.getString("start_time");
+						infohoder.station_train_code=jsonob.getString("station_train_code");
+						infohoder.start_station_name_ch=jsonob.getString("start_station_name");
+						infohoder.to_station_code=jsonob.getString("to_station_telecode");
+						infohoder.to_station_name_ch=jsonob.getString("to_station_name");
+						infohoder.convertDateFormat();
+						array.add(infohoder);
+					}
+
+					
+				}
+				
+			}else{
+				Log.i("liqiao", "responStr-->"+s);
+			}			
+					
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		return array;
+	}
 	public static ArrayList<TrainInfoHoder> ParseJsonToArray(String s){
 		JSONTokener jsonparser=new JSONTokener(s);
 		ArrayList<TrainInfoHoder> array=new ArrayList<TrainInfoHoder>();
@@ -111,6 +170,8 @@ public class Utility {
 					
 				}
 				
+			}else{
+				Log.i("liqiao", "responStr-->"+s);
 			}			
 					
 		} catch (Exception e) {
@@ -262,4 +323,12 @@ public class Utility {
 		}
 		return passengers;
 	}
+//    public String getpassengerTickets{
+//        String az = "";
+//        for (var ax = 0; ax < limit_tickets.length; ax++) {
+//            var ay = limit_tickets[ax].seat_type + ",0," + limit_tickets[ax].ticket_type + "," + limit_tickets[ax].name + "," + limit_tickets[ax].id_type + "," + limit_tickets[ax].id_no + "," + (limit_tickets[ax].phone_no == null ? "" : limit_tickets[ax].phone_no) + "," + (limit_tickets[ax].save_status == "" ? "N" : "Y");
+//            az += ay + "_"
+//        }
+//        return az.substring(0, az.length - 1)
+//    }
 }
